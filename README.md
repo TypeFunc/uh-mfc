@@ -1,7 +1,8 @@
 # uh-mfcs
 
 This repository collects resources and information related to the 
-UH circle of people interested in the Mathematical Foundations of CS (MFCS).
+**UH circle** of folks interested in the **Mathematical Foundations of Computing
+Science** (MFCS).
 
 ## Topics
 
@@ -28,7 +29,7 @@ them!); they are used below to indicate interests of members of the group.
 |Kyle Berney | ICS | berneyk at hawaii | |
 |Edo Biagioni | ICS | esb at ics | 2 |
 |Kelly Blumenthal | IFA | blumenthal.kelly at gmail | 5, 1, 2, 4| 
-|William DeMeo | Math | williamdemeo at gmail | 1, 2, 3, 4, 5, 6 |
+|William DeMeo | Math | williamdemeo at gmail | 3, 4, 5, 6, 2, 1|
 |Jake Fennick| Math| jfennick at math | 5, 6, 3, 4, 2, 1|
 |Patrick Karjala | ICS | pkarjala at hawaii | 5, 1 |
 |Bjoern Kjos-Hanssen | Math | bjoernkjoshanssen at gmail | 3 |
@@ -45,10 +46,9 @@ them!); they are used below to indicate interests of members of the group.
 The original email that kicked this off.
 
 ---------- Forwarded message ----------
-From: William DeMeo <williamdemeo@gmail.com>
-Date: Tue, Jan 24, 2017 at 8:28 PM
-Subject: Mathematical Foundations of Computing Science -- reading
-group or short course
+From: William DeMeo  
+Date: Tue, Jan 24, 2017 at 8:28 PM  
+Subject: Mathematical Foundations of Computing Science -- reading group or short course
 
 Hello Math Grad Students,
 
