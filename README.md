@@ -41,9 +41,11 @@ them!); they are used below to indicate interests of members of the group.
 
 ---------------------------------------------------------------------------
 
-## Origins
+## Miscellaneous Info
 
-The original email that kicked this off.
+### History
+
+The email that kicked this off.
 
 ---------- Forwarded message ----------  
 From: William DeMeo  
