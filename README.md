@@ -29,11 +29,13 @@ them!); they are used below to indicate interests of members of the group.
 |Edo Biagioni | ICS | esb at ics | 2 |
 |Kelly Blumenthal | IFA | blumenthal.kelly at gmail | 5, 1, 2, 4| 
 |William DeMeo | Math | williamdemeo at gmail | 3, 4, 5, 6, 2, 1|
+|Gabriel Dima | SAI | gdima at hawaii | 5, 6, 2, 1, 4, 3 |
 |Jake Fennick| Math| jfennick at math | 5, 6, 3, 4, 2, 1|
 |Patrick Karjala | ICS | pkarjala at hawaii | 5, 1 |
 |Bjoern Kjos-Hanssen | Math | bjoernkjoshanssen at gmail | 3 |
 |Sergey N| ICS | allwitchesdance at gmail| |
 |Hyeyoung Shin | Math/ICS | hyeyoungshinw at gmail | 4, 5, 3, 2, 1, 6|
+|Michael Sommer | ICS | mpsommer at hawaii | 2, 5, 3, 4, 1, 6 |
 |Muzamil Mahgoub Yahia | ICS | muzamil at hawaii | 2, 3, 4, 1, 5, 6|
 |Jack Yoon | Math | yoon at math | 6, 1, 4, 5, 3, 2 |
 
