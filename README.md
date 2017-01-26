@@ -3,8 +3,9 @@
 This repository collects resources and information related to the 
 UH circle of people interested in the Mathematical Foundations of CS (MFCS).
 
-**Topics**
-Here is a tentative list of topics that might be of interest to the group. 
+## Topics
+
+Here is a (tentative) list of some topics of interest to our group. 
 
 1. lambda calculus
 2. category theory
@@ -24,13 +25,13 @@ them!); they are used below to indicate interests of members of the group.
 |Name | Dept | Email | Interests|
 |----- |----------| ------| -----|
 |Anthony Christe | ICS | anthony.christe at gmail |5, 1, 2, 4, 3, 6|
-|Kyle Berney | ICS | berneyk@hawaii.edu | |
+|Kyle Berney | ICS | berneyk at hawaii | |
 |Edo Biagioni | ICS | esb at ics | 2 |
 |Kelly Blumenthal | IFA | blumenthal.kelly at gmail | 5, 1, 2, 4| 
 |William DeMeo | Math | williamdemeo at gmail | 1, 2, 3, 4, 5, 6 |
 |Jake Fennick| Math| jfennick at math | 5, 6, 3, 4, 2, 1|
 |Patrick Karjala | ICS | pkarjala at hawaii | 5, 1 |
-|Bjoern Kjos-Hanssen | Math | bjoernkjoshanssen@gmail.com | 3 |
+|Bjoern Kjos-Hanssen | Math | bjoernkjoshanssen at gmail | 3 |
 |Sergey N| ICS | allwitchesdance at gmail| |
 |Hyeyoung Shin | Math/ICS | hyeyoungshinw at gmail | |
 |Muzamil Mahgoub Yahia | ICS | muzamil at hawaii | 2, 3, 4, 1, 5, 6|
