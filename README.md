@@ -1,8 +1,7 @@
-# UH MFCS Circle
+# UH MFC Circle
 
 This repository collects resources and information related to the 
-**UH circle** of folks interested in the **Mathematical Foundations of Computing
-Science** (MFCS).
+**UH circle** of folks interested in the **Mathematical Foundations of Computing** (MFC).
 
 ## Topics
 
