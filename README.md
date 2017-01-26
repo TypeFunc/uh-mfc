@@ -34,7 +34,7 @@ them!); they are used below to indicate interests of members of the group.
 |Patrick Karjala | ICS | pkarjala at hawaii | 5, 1 |
 |Bjoern Kjos-Hanssen | Math | bjoernkjoshanssen at gmail | 3 |
 |Sergey N| ICS | allwitchesdance at gmail| |
-|Hyeyoung Shin | Math/ICS | hyeyoungshinw at gmail | |
+|Hyeyoung Shin | Math/ICS | hyeyoungshinw at gmail | 5, 6, 4, 1, 2, 3 |
 |Muzamil Mahgoub Yahia | ICS | muzamil at hawaii | 2, 3, 4, 1, 5, 6|
 |Jack Yoon | Math | yoon at math | 6, 1, 4, 5, 3, 2 |
 
