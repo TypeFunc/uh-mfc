@@ -1,4 +1,4 @@
-# uh-mfcs
+# UH MFCS Circle
 
 This repository collects resources and information related to the 
 **UH circle** of folks interested in the **Mathematical Foundations of Computing
@@ -45,7 +45,7 @@ them!); they are used below to indicate interests of members of the group.
 
 The original email that kicked this off.
 
----------- Forwarded message ----------
+---------- Forwarded message ----------  
 From: William DeMeo  
 Date: Tue, Jan 24, 2017 at 8:28 PM  
 Subject: Mathematical Foundations of Computing Science -- reading group or short course
