@@ -51,7 +51,7 @@ From: William DeMeo
 Date: Tue, Jan 24, 2017 at 8:28 PM  
 Subject: Mathematical Foundations of Computing Science -- reading group or short course
 
-Hello Math Grad Students,
+Hello Grad Students,
 
 I'd like to find out whether there are students at UH who would be
 interested in a non-credit short course, or series of tutorials,
