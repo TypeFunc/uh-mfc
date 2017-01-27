@@ -29,7 +29,7 @@ them!); they are used below to indicate interests of members of the group.
 |Edo Biagioni | ICS | esb at ics | 2 |
 |Kelly Blumenthal | IFA | blumenthal.kelly at gmail | 5, 1, 2, 4| 
 |Jason Castiglione|ICS|jcastig at hawaii | 3, 2, 5, 1|
-|William DeMeo | Math | williamdemeo at gmail | 3, 4, 5, 6, 2, 1|
+|William DeMeo | Math | williamdemeo at gmail | 3, 1, 4, 5, 6, 2|
 |Gabriel Dima | SAI | gdima at hawaii | 5, 6, 2, 1, 4, 3 |
 |Jake Fennick| Math| jfennick at math | 5, 6, 3, 4, 2, 1|
 |Patrick Karjala | ICS | pkarjala at hawaii | 5, 1 |
