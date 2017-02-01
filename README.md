@@ -57,7 +57,7 @@ The logic behind this ranking should be fairly obvious.
 
 The table below gives the popularity index of each topic.
 
-| topic num | description | pop index|
+| topic | description | pop index|
 | --------- | ----------- | --------- |
 | 1 | lambda calculus | 39|
 | 2 | category theory | 42 |
@@ -69,7 +69,7 @@ The table below gives the popularity index of each topic.
 So, sorting by popularity, the topics preferences are 
 5,2,3,1,4,6; that is,
 
-| pop rank | description | pop index |
+| rank | description | pop index |
 | --------- | ----------- | --------- |
 | 1 | functional programming and dependent types | 48 |
 | 2 | category theory | 42 |
