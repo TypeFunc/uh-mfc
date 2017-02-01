@@ -55,19 +55,7 @@ computed as follows:
 	
 The logic behind this ranking should be fairly obvious.  
 
-The table below gives the popularity index of each topic.
-
-| topic | description | pop index|
-| --------- | ----------- | --------- |
-| 1 | lambda calculus | 39|
-| 2 | category theory | 42 |
-| 3 | coalgebra and coinduction | 40 |
-| 4 | intuitionistic type theory | 32 | 
-| 5 | functional programming and dependent types | 48 |
-| 6 | automated theorem proving in Coq and/or Agda | 22 |
-
-So, sorting by popularity, the topics preferences are 
-5,2,3,1,4,6; that is,
+The table below sorts the topics according to this popularity index.
 
 | rank | description | pop index |
 | --------- | ----------- | --------- |
