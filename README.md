@@ -66,15 +66,16 @@ The table below gives the popularity index of each topic.
 | 5 | functional programming and dependent types | 48 |
 | 6 | automated theorem proving in Coq and/or Agda | 22 |
 
-Sorting by popularity, the topics are 
+So, sorting by popularity, the topics preferences are 
+5,2,3,1,4,6; that is,
 
-| topic num | description | pop index |
+| pop rank | description | pop index |
 | --------- | ----------- | --------- |
-| 5 | functional programming and dependent types | 48 |
+| 1 | functional programming and dependent types | 48 |
 | 2 | category theory | 42 |
 | 3 | coalgebra and coinduction | 40 |
-| 1 | lambda calculus | 39|
-| 4 | intuitionistic type theory | 32 | 
+| 4 | lambda calculus | 39|
+| 5 | intuitionistic type theory | 32 | 
 | 6 | automated theorem proving in Coq and/or Agda | 22 |
 
 
