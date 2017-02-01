@@ -43,6 +43,43 @@ them!); they are used below to indicate interests of members of the group.
 
 ---------------------------------------------------------------------------
 
+## Topic Popularity Index
+
+To decide what topics to cover and to develop a plan for covering them, we used
+the table above to derive a simple popularity index for the topics.  For each
+topic number n, let ni denote the number of times n appears in the i-th position
+in some team member's ordered list of topics.  Then the popularity index is
+computed as follows:
+
+    P(n) = 6*n1 + 5*n2 + 4*n3 + 3*n4 + 2*n5 + 1*n6
+	
+The logic behind this ranking should be fairly obvious.  
+
+The table below gives the popularity index of each topic.
+
+| topic num | description | pop index|
+| --------- | ----------- | --------- |
+| 1 | lambda calculus | 39|
+| 2 | category theory | 42 |
+| 3 | coalgebra and coinduction | 40 |
+| 4 | intuitionistic type theory | 32 | 
+| 5 | functional programming and dependent types | 48 |
+| 6 | automated theorem proving in Coq and/or Agda | 22 |
+
+Sorting by popularity, the topics are 
+
+| topic num | description | pop index |
+| --------- | ----------- | --------- |
+| 5 | functional programming and dependent types | 48 |
+| 2 | category theory | 42 |
+| 3 | coalgebra and coinduction | 40 |
+| 1 | lambda calculus | 39|
+| 4 | intuitionistic type theory | 32 | 
+| 6 | automated theorem proving in Coq and/or Agda | 22 |
+
+
+
+
 ## Miscellaneous Info
 
 ### History
