@@ -88,7 +88,7 @@ theory and (C) coalgebra** in **May**.
 However, we expect that students with little or no exposure
 to theoretical computer science will have a hard time if we simply 
 dive right into functional programming with dependent types.
-Therefore, we are now thinking we might try to organize a "Spring Break Boot Camp"
+Therefore, we will probably try to organize a "Spring Break Boot Camp"
 consisting of crash courses in some subset of the three other topics 
 ((D) lambda calculus, (E) type theory, and (F) Coq/Agda). This should 
 ensure that students understand some basic principles that will come up 
