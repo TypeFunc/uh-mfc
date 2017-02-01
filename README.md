@@ -48,7 +48,7 @@ them!); they are used below to indicate interests of members of the group.
 To decide what topics to cover and to develop a plan for covering them, we used
 the table above to derive a simple popularity index for the topics.  For each
 topic number n, let ni denote the number of times n appears in the i-th position
-in some team member's ordered list of topics.  Then the popularity index is
+in the team members' ordered lists of topics.  Then the popularity index is
 computed as follows:
 
     P(n) = 6*n1 + 5*n2 + 4*n3 + 3*n4 + 2*n5 + 1*n6
