@@ -80,14 +80,17 @@ So, sorting by popularity, the topics preferences are
 
 ------------------------------------------
 
-## Tentative Plan for April and May meetings (as of Jan 31, 2017)
+## Tentative Plan for Spring Break, April, May
+
+### Update: Jan 31, 2017
+
 We hope to organize some lectures on **(A) functional programming and
 dependent types** in **April** and, depending on how that goes, **(B) category
 theory and (C) coalgebra** in **May**.  
 
-However, we expect that students with little or no exposure
-to theoretical computer science will have a hard time if we simply 
-dive right into functional programming with dependent types.
+We expect that students with little or no exposure to theoretical computer
+science may feel lost if we simply dive right into functional
+programming with dependent types.  
 Therefore, we will probably try to organize a **Spring Break Boot Camp**
 (March 27--31) consisting of crash courses in some subset of the three 
 other topics, (D) lambda calculus, (E) type theory, and (F) Coq/Agda. 
