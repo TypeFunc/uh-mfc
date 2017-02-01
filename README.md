@@ -71,14 +71,31 @@ So, sorting by popularity, the topics preferences are
 
 | rank | description | pop index |
 | --------- | ----------- | --------- |
-| 1 | functional programming and dependent types | 48 |
-| 2 | category theory | 42 |
-| 3 | coalgebra and coinduction | 40 |
-| 4 | lambda calculus | 39|
-| 5 | intuitionistic type theory | 32 | 
-| 6 | automated theorem proving in Coq and/or Agda | 22 |
+| (A) | functional programming and dependent types | 48 |
+| (B) | category theory | 42 |
+| (C) | coalgebra and coinduction | 40 |
+| (D) | lambda calculus | 39|
+| (E) | intuitionistic type theory | 32 | 
+| (F) | automated theorem proving in Coq and/or Agda | 22 |
 
+------------------------------------------
 
+## Tentative Plan for April and May meetings (as of Jan 31, 2017)
+We hope to organize some lectures on **(A) functional programming and
+dependent types** in **April** and, depending on how that goes, **(B) category
+theory and (C) coalgebra** in **May**.  
+
+However, we expect that students with little or no exposure
+to theoretical computer science will have a hard time if we simply 
+dive right into functional programming with dependent types.
+Therefore, we are now thinking we might try to organize a "Spring Break Boot Camp"
+consisting of crash courses in some subset of the three other topics 
+((D) lambda calculus, (E) type theory, and (F) Coq/Agda). This should 
+ensure that students understand some basic principles that will come up 
+again and again when we cover topic (A).  Hopefully the boot camp experience 
+will also help to motivate our study of topics (B) and (C).
+
+-----------------------------------------------------------------
 
 
 ## Miscellaneous Info
