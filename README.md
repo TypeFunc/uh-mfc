@@ -33,7 +33,7 @@ them!); they are used below to indicate interests of members of the group.
 |Gabriel Dima | SAI | [gdima at hawaii](mailto:gdima@hawaii.edu) | 5, 6, 2, 1, 4, 3 |
 |[Jake Fennick](https://math.hawaii.edu/wordpress/people/jfennick/)| Math| [jfennick at math]( mailto:jfennickat@math.hawaii.edu) | 5, 6, 3, 4, 2, 1|
 |[Patrick Karjala](https://patrickakarjala.wordpress.com/) | COE | [pkarjala at hawaii](mailto:pkarjala@hawaii.edu) | 5, 1 |
-|[Bj\orn Kjos-Hanssen](https://math.hawaii.edu/wordpress/bjoern/) | Math | [bjoernkjoshanssen at gmail](mailto:bjoernkjoshanssen@gmail.com) | 3 |
+|[Bj&oslash;rn Kjos-Hanssen](https://math.hawaii.edu/wordpress/bjoern/) | Math | [bjoernkjoshanssen at gmail](mailto:bjoernkjoshanssen@gmail.com) | 3 |
 |Sergey N| ICS | [allwitchesdance at gmail](mailto:allwitchesdance@gmail.com)| |
 |[Hyeyoung Shin](http://hyeyoungshin.org) | Math/ICS | [hyeyoungshinw at gmail](mailto:hyeyoungshinw@gmail.com) | 4, 5, 3, 2, 1, 6|
 |Michael Sommer | ICS | [mpsommer at hawaii](mpsommer@hawaii.edu) | 2, 5, 3, 4, 1, 6 |
