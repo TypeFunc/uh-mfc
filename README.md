@@ -24,7 +24,7 @@ them!); they are used below to indicate interests of members of the group.
 
 |Name | Dept | Email | Interests|
 |----- |----------| ------| -----|
-|[Anthony Christe](http://www2.hawaii.edu/~achriste/) | ICS | anthony.christe at gmail |5, 1, 2, 4, 3, 6|
+|[Anthony Christe](http://www2.hawaii.edu/~achriste/) | ICS | [anthony.christe at gmail](mailto:anthony.christe@gmail.com) |5, 1, 2, 4, 3, 6|
 |[Kyle Berney](http://www2.hawaii.edu/~berneyk/index.html) | ICS | [berneyk at hawaii](mailto:berneyk@hawaii.edu) | |
 |[Edo Biagioni](http://www2.hawaii.edu/~esb/) | ICS | [esb at ics](mailto:esb@ics.hawaii.edu) | 2 |
 |[Kelly Blumenthal](http://kelblu.weebly.com/) | IFA | [blumenthal.kelly at gmail](mailto:blumenthal.kelly@gmail) | 5, 1, 2, 4| 
