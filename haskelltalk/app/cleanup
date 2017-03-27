@@ -1,0 +1,9 @@
+# remove temporary files
+rm Mandelbrot Pentaflake Quasifuchsian SquareLimit
+rm *~
+rm *.log
+rm *.aux
+rm *.dyn_hi
+rm *.dyn_o
+rm *.hi
+rm *.o

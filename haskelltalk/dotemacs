@@ -1,0 +1,19 @@
+;; If you don't have MELPA in your package archives:
+(require 'package)
+(add-to-list
+  'package-archives
+  '("melpa" . "http://melpa.org/packages/") t)
+(add-to-list 'load-path "~/.stack/snapshots/x86_64-linux-nopie/lts-8.6/8.0.2/lib/x86_64-linux-ghc-8.0.2/")
+(package-initialize)
+(package-refresh-contents)
+
+;; Install Intero
+;; Intero comes with ghc-mod, flycheck, company
+(package-install 'intero)
+(add-hook 'haskell-mode-hook 'intero-mode)
+
+;; Tidal cycles
+(add-to-list 'load-path "~/uh-mfc/haskelltalk/") ;; Look for tidal.el in ~/uh-mfc/haskelltalk
+(require 'tidal)
+;;(setq tidal-interpreter "~/.stack/programs/x86_64-linux/ghc-nopie-8.0.2/bin/ghci")
+(setq tidal-interpreter "~/uh-mfc/haskelltalk/ghciscript")

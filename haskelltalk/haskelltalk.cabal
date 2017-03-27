@@ -1,0 +1,81 @@
+name:                haskelltalk
+version:             0.1.0.0
+-- synopsis:
+-- description:
+homepage:            https://github.com/githubuser/haskelltalk#readme
+license:             BSD3
+license-file:        LICENSE
+author:              Author name here
+maintainer:          example@example.com
+copyright:           2017 Author name here
+category:            Web
+build-type:          Simple
+--extra-source-files:  README.md
+cabal-version:       >=1.10
+
+library
+  hs-source-dirs:      src
+  exposed-modules:     Lib
+  build-depends:       base >= 4.7 && < 5
+  default-language:    Haskell2010
+
+executable haskelltalk-exe
+  hs-source-dirs:      app
+  main-is:             Main.hs
+  other-modules:       Basics, Mandelbrot, Pentaflake, Quasifuchsian, SquareLimit, DependentTypes, HaTeX, MatPlotLib, HigherOrder, LazyEvaluation, Records, Tidal, Types, Category, MutableState, Testing, LambdaCalculus
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+                     --, transformers
+                     --, extensible-effects
+                     , lens
+                     , tidal
+                     --, ad
+                     --, parsec
+                     , diagrams, diagrams-lib, diagrams-svg, colour, array
+                     --, dimensional
+                     --, djinn-lib
+                     , HaTeX
+                     --, matrix
+                     --, hamilton
+                     --, H , inline-r
+                     --, intervals
+                     --, kan-extensions
+                     , matplotlib
+                     , tasty, tasty-expected-failure, tasty-hunit, tasty-golden
+                     --, random
+                     --, raw-strings-qq
+                     --, temporary
+                     --, bytestring
+                     --, process
+                     --, split
+                     --, morte
+                     --, recursion-schemes
+                     --, Rasterific
+                     --, search-algorithms
+                     --, shelly
+                     --, tf-random
+                     --, threepenny-gui
+                     --, turtle
+                     --, typed-processes
+                     --, unordered-containers
+                     --, vectors
+                     --, accelerate
+                     --, repa
+                     --, yesod
+                     --, criterion
+                     --, weigh
+                     , haskelltalk
+  default-language:    Haskell2010
+
+test-suite haskelltalk-test
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             Spec.hs
+  build-depends:       base
+                     , haskelltalk
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N -XOverloadedStrings
+  default-language:    Haskell2010
+
+source-repository head
+  type:     git
+  location: https://github.com/githubuser/haskelltalk

@@ -1,0 +1,71 @@
+echo "This script may take a long time. ~(2 hrs...)"
+
+echo "Installing git version control"
+# Tidalcycles and exference require git
+sudo apt-get --yes install git
+
+echo "Installing stack, the haskell build tool & curated subset of the hackage.org software repository"
+./getstack
+echo "Appending ~/.local/bin to your PATH environment variable in ~/.bashrc"
+echo "$(cat ~/.bashrc)"$'\n'"export PATH=~/.local/bin:$PATH" >> ~/.bashrc
+source ~/.bashrc
+echo "Installing GHC, the Glorious Haskell Compiler"
+stack setup
+#echo "Installing cabal build tool"
+#stack install cabal-install
+echo "Installing intero"
+stack install intero
+echo "Building. The first time you do a full build may take a long time ~(2 hrs...)"
+stack build
+
+echo "Installing emacs text editor"
+sudo apt-get --yes  install emacs
+echo "moving ~/.emacs to ~/.emacsbackup"
+mv ~/.emacs ~/.emacsbackup
+echo "copying dotemacs to ~/.emacs"                                                     
+cp dotemacs ~/.emacs
+
+echo "Downloading atom text editor"
+wget -nc https://atom.io/download/deb
+mv deb atom-amd64.deb
+echo "Installing atom text editor"
+sudo dpkg --install atom-amd64.deb
+
+#Need to create symlink on ubuntu 16.04 and 16.10
+sudo ln -s /lib/x86_64-linux-gnu/libtinfo.so.5 /lib/x86_64-linux-gnu/libtinfo.so
+
+#Some of the haskell libraries require native dependencies which stack does not install,
+#so we need to use the system package manager.  This works on ubuntu linux, but if you are
+#on windows or OSX you will need to install some other way.
+
+echo "Installing python3 for Matplotlib"
+sudo apt-get --yes install -y python3-pip python3-matplotlib python3-numpy python-mpltoolkits.basemap
+
+echo "Installing Supercollider for Tidalcycles algorithmic music"
+sudo apt-get --yes install supercollider sc3-plugins
+#Download tidal-mode for emacs
+wget -nc https://raw.github.com/yaxu/Tidal/master/tidal.el
+
+# Now you will need to setup your editor integration.
+# If you're using emacs, the included .emacs file should already have the tidalcycles plugin.
+# Follow the directions at https://tidalcycles.org/getting_started.html
+# In particular, you need enter the following two commands in the supercollider ide before
+# you start Tidalcycles.  (Press shift-enter with your cursor on each line to send each command.)
+#
+# include("SuperDirt")
+# Now go the Language menu and click Recompile Class Library before entering the next command.
+# SuperDirt.start
+
+# If you're using atom, after you install the tidalycles plugin (and all its dependencies), 
+# go to its settings and change the ghci path to
+# /home/your-user-name/uh-mfc/haskelltalk/ghciscript
+# For some reason atom requires an absolute path, not a relative path
+
+echo "Installing LaTeX for HaTeX"
+sudo apt-get --yes install texlive
+
+echo "Finished!"
+
+# If your install goes bad, you can just
+# rm -rf ~/.stack ~/.emacs.d ~/uh-mfc/haskelltalk/.stack-work
+# and then reinstall

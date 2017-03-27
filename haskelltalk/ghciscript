@@ -1,0 +1,5 @@
+#!/bin/bash
+
+#Start stack within the haskelltalk directory so it puts all of the libraries on the PATH
+cd ~/haskelltalk
+stack exec ghci

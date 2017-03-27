@@ -1,0 +1,107 @@
+Basics
+
+strong static types & type signatures, immutability/purity, lazy evaluation
+polymorphic data types
+pattern matching, partial evaluation i.e. fixing
+higher-order functions (Ex: map/reduce) (Ex: lazy accumulator?)
+point-free style (i.e. eta reduction is partial evaluation)
+combinatory style?
+type inference! (Ex: beautiful error messages)
+IO & do notation (without monads)
+numeric tower (discuss explicit conversion vs arianne 5 64bit to 16bit disaster)
+read . show for basic serialization
+text vs. string?
+
+Lazy evaluation
+
+infinite data structures
+
+development environment
+
+stack + emacs + intero
+syntax highlighting / coloring
+Ctrl-ct for type info, Ctrl-uct to insert type signature (Note: type inference!)
+Ctrl-ci for general info
+M-. is jump to definition.  Example: fib
+Auto-completion.
+Ctrl-cr to apply ghc sugggestions
+repl with ghci
+Module system, imports, exports, etc
+M-x haskell-sort-imports
+Ctrl-l to reload module
+
+Types
+
+--Think of types as "assertions as to the potential values of a given term" not "storage classification systems".
+
+Sum Types and Product Types form an Algebra (steal zipper example)
+
+type-driven development
+type holes _ infer type of hole, then look up possible functions using M-x haskell-hoogle
+
+newtypes!
+higher kinded data types (Functor, etc)
+debugging and stace traces ...
+
+type classes & category theory
+First of all, type classes are not like the classes in object oriented programming; they are more like interfaces i.e. any type which is an instance of a type class must implement all of the class functions.
+The collection of all types (including function types a -> b !) forms a category* called Hask, where the objects are types and the morphisms are functions for concrete types and Functors for function types.  Note that a | b and (a,b) correspond to the sum and product of types, so Hask is an algebra.   So a type class is just a subcategory of Hask.
+
+StringLike example
+
+(note: type class laws (i.e. category axioms) must be manually verified)
+monoid, functor, applicative, monad, foldable, traversable (note: deriving is awesome!)
+Instances: Maybe (no nulls!) & short circuiting, Either (almost no exceptions!),
+IO & do notation, Reader, Writer, State (random number generators)
+
+parsing with Parsec vs Typed configuration files
+testing with HUnit & QuickCheck & Hspec & Tasty
+
+performance & concurrency
+
+RULES pragmas / shortcut fusion
+profiling with criterion
+software transactional memory (NO deadlocks! & Low overhead due to immutability)
+lightweight/green threads
+data parallel haskell?
+accelerate? repa?
+cloud haskell?
+
+advanced topics
+
+ADTs & GADTs (Ex: lambda calculus interpreter / compiler)
+monad transformers with mtl (STEAL STEPHEN DIEHL'S EXAMPLE)
+extensible-effects
+free monads w/ interpreter
+Kleisli arrows
+phantom types
+continuation passing style
+
+libraries - with stack, you can get (most) libraries just by adding to the build-depends section of your .cabal file!
+
+imperative programming/records with lens
+graphics with Diagrams, threepenny-gui
+automated theorem proving with Djinn / Exference (Curry Howard 'isomorphism')
+automatic differentiation with ad
+scripting with shelly / turtle / typed-processes
+data structures with vector, unordered-containers
+streaming with conduit / pipes
+configuration with configurator
+web apps with yesod, etc
+reactive programing with reflex + reflex-host / reactive-banana
+statically checked units with dimensional
+recursion schemes http://stackoverflow.com/questions/36851766/histomorphisms-zygomorphisms-and-futumorphisms-specialised-to-lists
+
+dependent types
+
+totality & bottom (Ex: let x = x in x)
+length indexed vectors / dimension indexed graded rings
+red black trees
+
+Misc
+
+running example: the cohomology of arithmetic (see group rings, polynomial multiplication, etc)
+monte carlo estimation of chaitin's constant?
+lazily compute digits of Pi, e, etc.
+the evaluation map!
+
