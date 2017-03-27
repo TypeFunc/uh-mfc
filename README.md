@@ -31,15 +31,16 @@ them!); they are used below to indicate interests of members of the group.
 |[Jason Castiglione](http://www.asecolab.org/people/jason-castiglione/)|ICS|[jcastig at hawaii](mailto:jcastig@hawaii.edu) | 3, 2, 5, 1|
 |[William DeMeo](http://williamdemeo.org) | Math | [williamdemeo at gmail](mailto:williamdemeo@gmail.com) | 3, 1, 4, 5, 6, 2|
 |Gabriel Dima | SAI | [gdima at hawaii](mailto:gdima@hawaii.edu) | 5, 6, 2, 1, 4, 3 |
-|[Jake Fennick](https://math.hawaii.edu/wordpress/people/jfennick/)| Math| [jfennick at math]( mailto:jfennickat@math.hawaii.edu) | 5, 6, 3, 4, 2, 1|
+|[Jake Fennick](https://math.hawaii.edu/wordpress/people/jfennick/)| Math| [jfennick at math](mailto:jfennickat@math.hawaii.edu) | 5, 6, 3, 4, 2, 1|
 |[Patrick Karjala](https://patrickakarjala.wordpress.com/) | COE | [pkarjala at hawaii](mailto:pkarjala@hawaii.edu) | 5, 1 |
 |[Bj&oslash;rn Kjos-Hanssen](https://math.hawaii.edu/wordpress/bjoern/) | Math | [bjoernkjoshanssen at gmail](mailto:bjoernkjoshanssen@gmail.com) | 3 |
 |Sergey N| ICS | [allwitchesdance at gmail](mailto:allwitchesdance@gmail.com)| |
 |[Hyeyoung Shin](http://hyeyoungshin.org) | Math/ICS | [hyeyoungshinw at gmail](mailto:hyeyoungshinw@gmail.com) | 4, 5, 3, 2, 1, 6|
-|Michael Sommer | ICS | [mpsommer at hawaii](mpsommer@hawaii.edu) | 2, 5, 3, 4, 1, 6 |
+|Michael Sommer | ICS | [mpsommer at hawaii](mailto:mpsommer@hawaii.edu) | 2, 5, 3, 4, 1, 6 |
 |[Austin Tasato](http://vizualize.me/atasato) |ICS | [atasato at hawaii](mailto:atasato@hawaii.edu)| 2, 4, 5, 1, 3, 6 |
-|Muzamil Mahgoub Yahia | ICS | [muzamil at hawaii](muzamil@hawaii.edu) | 2, 3, 4, 1, 5, 6|
-|[Jack Yoon](https://math.hawaii.edu/wordpress/people/yoon/) | Math | [yoon at math](yoon@math.hawaii.edu)  | 6, 1, 4, 5, 3, 2 |
+|Muzamil Mahgoub Yahia | ICS | [muzamil at hawaii](mailto:muzamil@hawaii.edu) | 2, 3, 4, 1, 5, 6|
+|Troy Wooton | ICS |[gcowootont at gmail](mailto:gcowootont@gmail.com)| 5, 1, 2, 4, 6, 3|
+|[Jack Yoon](https://math.hawaii.edu/wordpress/people/yoon/) | Math | [yoon at math](mailto:yoon@math.hawaii.edu)  | 6, 1, 4, 5, 3, 2 |
 
 
 ---------------------------------------------------------------------------
