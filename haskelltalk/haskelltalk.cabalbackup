@@ -22,32 +22,29 @@ library
 executable haskelltalk-exe
   hs-source-dirs:      app
   main-is:             Main.hs
-  other-modules:       Basics, Mandelbrot, Pentaflake, Quasifuchsian, SquareLimit, DependentTypes, HaTeX, MatPlotLib, HigherOrder, LazyEvaluation, Records, Tidal, Types, Category, MutableState, Testing, LambdaCalculus
+  other-modules:       Basics, Mandelbrot, Pentaflake, CSound, Quasifuchsian, SquareLimit, DependentTypes, HaTeX, MatPlotLib, HigherOrder, LazyEvaluation, Records, Types, Category, MutableState, Testing, LambdaCalculus
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   build-depends:       base
-                     --, transformers
+                     , transformers
                      --, extensible-effects
                      , lens
                      , tidal
-                     --, ad
+                     , csound-expression
+                     , ad
                      --, parsec
                      , diagrams, diagrams-lib, diagrams-svg, colour, array
                      --, dimensional
                      --, djinn-lib
-                     , HaTeX
-                     --, matrix
+                     , HaTeX, matrix
                      --, hamilton
                      --, H , inline-r
                      --, intervals
                      --, kan-extensions
                      , matplotlib
+                     -- The next two lines are needed for Matplotlib
+                     , random, raw-strings-qq, temporary, bytestring, process, split
                      , tasty, tasty-expected-failure, tasty-hunit, tasty-golden
-                     --, random
-                     --, raw-strings-qq
-                     --, temporary
-                     --, bytestring
-                     --, process
-                     --, split
+                     , stm
                      --, morte
                      --, recursion-schemes
                      --, Rasterific
@@ -70,7 +67,7 @@ executable haskelltalk-exe
 test-suite haskelltalk-test
   type:                exitcode-stdio-1.0
   hs-source-dirs:      test
-  main-is:             Spec.hs
+  main-is:             Main.hs
   build-depends:       base
                      , haskelltalk
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N -XOverloadedStrings

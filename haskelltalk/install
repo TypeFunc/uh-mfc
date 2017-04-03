@@ -61,6 +61,9 @@ wget -nc https://raw.github.com/yaxu/Tidal/master/tidal.el
 # /home/your-user-name/uh-mfc/haskelltalk/ghciscript
 # For some reason atom requires an absolute path, not a relative path
 
+echo "Installing csound music"
+sudo apt-get install csound #csound-gui
+
 echo "Installing LaTeX for HaTeX"
 sudo apt-get --yes install texlive
 

@@ -16,8 +16,31 @@ the types A | B and (A,B) are also in Hask.
 Categories are implemented using type classes.  Type classes are more like "interfaces"
 (as opposed to the "classes" from object oriented programming).
 -}
+
 --TODO...
+
 {- What the hell is a monad?  Easy, a monad is a monoid in the category of endofunctors
 (of Hask). :)
 -}
---TODO...
+
+--do notation is usually first encountered in the context of IO, but in fact it works for any monad
+--do notation gets translated or "desugared" as follows:
+helloWorld2 :: IO()
+helloWorld2 = getLine >>= (\input -> putStrLn $ "hello" ++ input)
+{- This
+do x <- mx
+   y <- my
+   z
+
+-- is equivalent to
+
+do x <- mx
+   do y <- my
+      z
+
+-- which deguars to
+
+mx >>= (\x ->
+my >>= (\y ->
+z ))
+-}

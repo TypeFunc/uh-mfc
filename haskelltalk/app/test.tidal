@@ -1,1 +1,5 @@
-d2 $ sound "hh hh hh hh"
+-- Copy and paste the contents of Tidal.hs into ghci to setup Tidal
+
+d1 $ sound "bd bd cp bd"
+
+hush

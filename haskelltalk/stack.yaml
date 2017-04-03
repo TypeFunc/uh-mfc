@@ -39,8 +39,14 @@ packages:
 - '.'
 # Dependency packages to be pulled from upstream that are not in the resolver
 # (e.g., acme-missiles-0.3)
-extra-deps: []
-
+extra-deps:
+- csound-expression-5.2.0
+- csound-expression-dynamic-0.3.0
+- csound-expression-opcodes-0.0.3.2
+- csound-expression-typed-0.2.0.0
+- temporal-media-0.6.1
+- data-fix-0.0.3
+- data-fix-cse-0.0.2
 # Override default flag values for local packages and extra-deps
 flags: {}
 

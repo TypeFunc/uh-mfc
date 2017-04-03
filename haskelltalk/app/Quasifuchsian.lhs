@@ -2,6 +2,8 @@
 > {-# LANGUAGE TypeFamilies #-}
 > {-# LANGUAGE FlexibleContexts #-}
 
+> module Quasifuchsian where
+
 Quasifuchsian limit circles of Schottky groups of Moebius transformations. Sounds very pretentious. Connoisseurs may want to direct their monocles towards the tome ["Indra's Pearls: The Vision of Felix Klein"][book] wherein the extraordinary circumstances behind these images are revealed.
 
 The fractals presented here are a good example why declarative image generation should be done in a full programming language.

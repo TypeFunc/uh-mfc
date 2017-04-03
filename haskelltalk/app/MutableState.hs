@@ -6,7 +6,7 @@ import Data.STRef (newSTRef, readSTRef, modifySTRef, writeSTRef)
 import Control.Concurrent (newMVar, newEmptyMVar, readMVar, modifyMVar, putMVar, takeMVar, forkIO, threadDelay)
 import Control.Monad (forM_, when)
 import Control.Monad.ST (runST)
-
+import Control.Concurrent.STM (STM, TVar, newTVar, modifyTVar, readTVar, writeTVar, newTVarIO, readTVarIO, atomically)
 
 --IORef is the most basic mutable reference.  There is also STRef, MVar, and TVar for
 --software transactional memory. All have similar functions as you can see above.
@@ -102,4 +102,51 @@ fork2 = do
     takeMVar a -- evaluation in the main thread will pause for 2 seconds while takeMVar waits for the other thread to putMVar.  Both strings are printed.
     putStrLn "Game over!"
 
---TODO Software Transactional Memory with TVars and atomically
+-- Software Transactional Memory with TVars and atomically
+{- STM is analogous to an in-memory database.  STM handles concurrent
+transactions by allowing them to retry.
+-}
+
+bigTransaction :: IO ()
+bigTransaction = do
+    let transaction :: STM Int
+        transaction = do
+                 --newTVar :: Int -> STM (TVar Int)
+            var <- newTVar (0 :: Int)
+          --modifyTVar :: TVar Int -> (Int -> Int) -> STM ()
+            modifyTVar var (+1)
+          --readTVar :: TVar Int -> STM Int
+            readTVar var
+           --atomically :: STM Int -> IO Int
+    value <- atomically transaction
+    print value
+  --putStrLn $ show transaction
+{- We invoke transactions using atomically.  From the point of view of code outside of
+the transaction, the value will seem to appear all at once, or "atomically".
+-}
+
+atomicReadWrite :: IO ()
+atomicReadWrite = do
+         --newTVarIO :: Int -> IO (TVar Int)
+    var <- newTVarIO (0 :: Int)
+    atomically $ do
+               --readTVar :: TVar Int -> STM Int
+        value <- readTVar var
+      --writeTVar :: TVar Int -> Int -> STM ()
+        writeTVar var (value + 1)
+
+  --readTVarIO :: TVar Int -> IO Int
+    readTVarIO var >>= print
+
+f :: TVar Int -> STM ()
+      --modifyTVar :: TVar Int -> (Int -> Int) -> STM ()
+f var = modifyTVar var (+1)
+
+twoCombined :: IO ()
+twoCombined = do
+    var <- newTVarIO (0 :: Int)
+    atomically $ do
+        f var
+        f var
+    readTVarIO var >>= print
+
