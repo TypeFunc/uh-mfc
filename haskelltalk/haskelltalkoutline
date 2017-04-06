@@ -7,10 +7,9 @@ Ctrl-ct for type info, Ctrl-uct to insert type signature (Note: type inference!)
 Ctrl-ci for general info
 M-. is jump to definition.  Example: fib
 Auto-completion.
-Ctrl-cr to apply ghc sugggestions
-repl with ghci
-Module system, imports, exports, etc
-Ctrl-l to reload module
+Ctrl-cr to apply ghc sugggestions Example: Doubl -> Double
+Ctrl-c, to format imports
+Ctrl-cl to load file with ghci
 
 Basics
 

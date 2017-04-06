@@ -11,12 +11,17 @@ echo "$(cat ~/.bashrc)"$'\n'"export PATH=~/.local/bin:$PATH" >> ~/.bashrc
 source ~/.bashrc
 echo "Installing GHC, the Glorious Haskell Compiler"
 stack setup
-#echo "Installing cabal build tool"
-#stack install cabal-install
-echo "Installing intero"
+echo "Installing cabal build tool"
+stack install cabal-install
+stack exec -- cabal install world
+mv .cabalconfig ~/.cabal/config
+echo "Installing intero development tool"
 stack install intero
-echo "Building. The first time you do a full build may take a long time ~(2 hrs...)"
-stack build
+#echo "Installing hoogle documentation"
+#stack install hoogle
+#stack exec -- hoogle generate all
+#echo "Installing hlint code style suggestions"
+#stack install hlint
 
 echo "Installing emacs text editor"
 sudo apt-get --yes  install emacs
@@ -38,8 +43,11 @@ sudo ln -s /lib/x86_64-linux-gnu/libtinfo.so.5 /lib/x86_64-linux-gnu/libtinfo.so
 #so we need to use the system package manager.  This works on ubuntu linux, but if you are
 #on windows or OSX you will need to install some other way.
 
-echo "Installing python3 for Matplotlib"
-sudo apt-get --yes install -y python3-pip python3-matplotlib python3-numpy python-mpltoolkits.basemap
+#echo "Installing python3 for Matplotlib"
+#sudo apt-get --yes install -y python3-pip python3-matplotlib python3-numpy python-mpltoolkits.basemap
+
+echo "Installing gnuplot"
+sudo apt-get install gnuplot
 
 echo "Installing Supercollider for Tidalcycles algorithmic music"
 sudo apt-get --yes install supercollider sc3-plugins
@@ -66,6 +74,26 @@ sudo apt-get install csound #csound-gui
 
 echo "Installing LaTeX for HaTeX"
 sudo apt-get --yes install texlive
+
+# The following five pairs of lines are needed for the plot library
+echo "Installing cairo vector graphics"
+sudo apt-get install libcairo2-dev
+
+# The following two pairs of lines are needed for the hmatrix library
+echo "Installing blas and lapack linear algebra"
+sudo apt-get install libblas-dev liblapack-dev
+
+echo "Installing gsl Gnu Scientific Library"
+sudo apt-get install libgsl-dev
+
+echo "Installing pango"
+sudo apt-get install libpango1.0-dev
+
+echo "Installing gtk and gtk3"
+sudo apt-get install libgtk2.0-dev libgtk-3-dev
+
+echo "Building. The first time you do a full build may take a long time ~(2 hrs...)"
+stack build
 
 echo "Finished!"
 
