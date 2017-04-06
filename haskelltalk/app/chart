@@ -1,0 +1,3 @@
+stack ghc -- Chart$1.hs -o Chart$1
+./Chart$1
+rm Chart$1 Chart$1.hi Chart$1.o
