@@ -73,3 +73,10 @@ extra-package-dbs: []
 #
 # Allow a newer minor version of GHC than the snapshot specifies
 # compiler-check: newer-minor
+
+# Uncomment the folling lines and do 'stack build' to enable profiling.
+# Disabled because it vastly increases the time and memory required to do a full build.
+# (i.e. the matrix library requires almost 4GB of ram...)
+#build:
+#  library-profiling: true
+#  executable-profiling: true

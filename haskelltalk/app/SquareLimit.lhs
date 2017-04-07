@@ -2,8 +2,6 @@
 > {-# LANGUAGE TypeFamilies #-}
 > {-# LANGUAGE FlexibleContexts #-}
 
-> module SquareLimit where
-
 This is a reconstruction of [M C Escher's print "Square
 Limit"](http://www.wikipaintings.org/en/m-c-escher/square-limit). It
 is based on the classic paper "Functional Geometry" by Peter Henderson
