@@ -27,6 +27,8 @@ executable haskelltalk-exe
                        Plot1, Plot2, Plot3, Plot4,
                        Mandelbrot, Pentaflake, Quasifuchsian, SquareLimit,
                        GnuPlot,
+                       Dimensional, Units1, Units2,
+                       AD,
                        CSound,
                        HaTeX
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
@@ -51,7 +53,7 @@ executable haskelltalk-exe
                      -- The next line is needed for plot
                      , hmatrix, hmatrix-gsl-stats, gtk, cairo, pango
                      , gnuplot, time, filepath
-                     --, dimensional
+                     , dimensional, units, units-defs
                      --, djinn-lib
                      , HaTeX, matrix
                      --, hamilton
@@ -74,7 +76,7 @@ executable haskelltalk-exe
                      --, typed-processes
                      --, unordered-containers
                      --, vectors
-                     --, accelerate
+                     , accelerate, accelerate-examples
                      --, repa
                      --, yesod
                      --, criterion

@@ -50,9 +50,24 @@ extra-deps:
 - gnuplot-0.5.4.1
 - data-accessor-transformers-0.2.1.7
 - Chart-gtk-1.8.2
+- accelerate-1.0.0.0
+- accelerate-examples-1.0.0.0
+- accelerate-fft-1.0.0.0
+- accelerate-io-1.0.0.0
+- colour-accelerate-0.1.0.0
+- gloss-accelerate-0.2.0.0
+- linear-accelerate-0.3
+- gloss-raster-accelerate-0.2.0.0
+- lens-accelerate-0.1.0.0
+- normaldistribution-1.1.0.3
+- unique-0
+allow-newer: true
 # Override default flag values for local packages and extra-deps
-flags: {}
-
+flags:
+  accelerate-examples:
+    cuda: false
+  gloss-raster-accelerate:
+    cuda: false
 # Extra package databases containing global packages
 extra-package-dbs: []
 
@@ -80,3 +95,8 @@ extra-package-dbs: []
 #build:
 #  library-profiling: true
 #  executable-profiling: true
+
+ghc-options:
+    # All packages
+    "*": -Wall -O2
+rebuild-ghc-options: true

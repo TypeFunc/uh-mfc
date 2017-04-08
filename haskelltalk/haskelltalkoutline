@@ -48,10 +48,12 @@ IO & do notation, Reader, Writer, State (random number generators)
 Libraries demos
 
 imperative programming/records with lens
-graphics with Diagrams (Quasifuchsian example)
+graphics with Plot, Gnuplot, Chart, and Diagrams (Quasifuchsian example)
 automated theorem proving with Exference (Curry Howard 'isomorphism')
 latex with HaTeX
 algorithmic music with Tidalcycles and Csound expression
+statically checked units with dimensional and units
+automatic differentiation with ad
 
 -------------------------------TODO-------------------------------
 
@@ -69,25 +71,24 @@ totality & bottom (Ex: let x = x in x)
 performance & concurrency
 
 RULES pragmas / shortcut fusion
-profiling with criterion
+profiling with criterion, weigh
 lightweight/green threads
 data parallel haskell?
-accelerate? repa?
+repa?
 cloud haskell?
 
 Libraries demos
 
 parsing with Parsec vs Typed configuration files
 testing with HUnit & QuickCheck & Hspec & Tasty
-automatic differentiation with ad
 scripting with shelly / turtle / typed-processes
 data structures with vector, unordered-containers
-streaming with conduit / pipes
+streaming with conduit / pipes / streaming
 configuration with configurator
 web apps with yesod, etc
 reactive programing with reflex + reflex-host / reactive-banana
-statically checked units with dimensional
 recursion schemes http://stackoverflow.com/questions/36851766/histomorphisms-zygomorphisms-and-futumorphisms-specialised-to-lists
+R language bindings with H & inlineR
 
 dependent types
 
