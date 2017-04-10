@@ -61,13 +61,30 @@ extra-deps:
 - lens-accelerate-0.1.0.0
 - normaldistribution-1.1.0.3
 - unique-0
+- llvm-hs-4.0.1.0
+- accelerate-llvm-1.0.0.0
+- accelerate-llvm-native-1.0.0.0
+# - accelerate-llvm-ptx-1.0.0.0
+- chaselev-deque-0.5.0.5
+- llvm-hs-pure-4.0.0.0
+- gtk2hs-buildtools-0.13.2.2
 allow-newer: true
 # Override default flag values for local packages and extra-deps
 flags:
-  accelerate-examples:
-    cuda: false
   gloss-raster-accelerate:
     cuda: false
+  llvm-hs:
+    shared-llvm: true
+  accelerate:
+    ekg: true
+  accelerate-fft:
+    cuda:     false
+    llvm-cpu: true
+#    llvm-ptx: true
+  accelerate-examples:
+    cuda:       false
+    llvm-cpu:   true
+#    llvm-ptx:   true
 # Extra package databases containing global packages
 extra-package-dbs: []
 
