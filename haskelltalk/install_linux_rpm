@@ -64,51 +64,10 @@ sudo yum --assumeyes install libfftw-devel
 echo "Installing cmake3" # Needed for installing from source (llvm requires version 3)
 sudo yum --assumeyes install cmake3
 
-echo "Installing Supercollider for Tidalcycles algorithmic music from source"
 sudo yum --assumeyes install libudev-devel libsndfile-devel libX11-devel libqxt-devel jack-audio-connection-kit-devel
-wget -nc https://github.com/supercollider/supercollider/releases/download/Version-3.8.0/SuperCollider-3.8.0-Source-linux.tar.bz2
-tar -xf SuperCollider-3.8.0-Source-linux.tar.bz2
-cd SuperCollider-Source
-mkdir build
-cd build
-#QTDIR=~/Qt
-cmake3 -DCMAKE_PREFIX_PATH=~/Qt ..
-make
-sudo make install
-sudo ldconfig
-cd ../..
-
-echo "Installing Supercollider plugins for Tidalcycles algorithmic music from source"
-git clone --recursive https://github.com/supercollider/sc3-plugins.git
-cd sc3-plugins
-#git submodule init && git submodule update
-mkdir build
-cd build
-cmake3 -DSC_PATH=../../SuperCollider-Source ..
-make
-sudo make install
-cd ../..
-
-#Download tidal-mode for emacs
-wget -nc https://raw.github.com/yaxu/Tidal/master/tidal.el
-
-# Now you will need to setup your editor integration.
-# If you're using emacs, the included .emacs file should already have the tidalcycles plugin.
-# Follow the directions at https://tidalcycles.org/getting_started.html
-# In particular, you need enter the following two commands in the supercollider ide before
-# you start Tidalcycles.  (Press shift-enter with your cursor on each line to send each command.)
-#
-# include("SuperDirt")
-# Now go the Language menu and click Recompile Class Library before entering the next command.
-# SuperDirt.start
-
-# If you're using atom, after you install the tidalycles plugin (and all its dependencies), 
-# go to its settings and change the ghci path to
-# /home/your-user-name/uh-mfc/haskelltalk/ghciscript
-# For some reason atom requires an absolute path, not a relative path
+./install_supercollider 3
 
 echo "Installing csound music from source"
-#sudo yum --assumeyes install csound
 git clone https://github.com/csound/csound.git
 cd csound
 mkdir build
