@@ -1,0 +1,183 @@
+echo "This script may take a long time. ~(2 hrs...)"
+
+#Need to create symlink on red hat linux 7.3 to workaround a bug when installing haskelline
+sudo ln -s /usr/lib64/libtinfo.so.5 /usr/lib64/libtinfo.so
+
+echo "Installing git version control"
+# Tidalcycles and exference require git
+sudo yum --assumeyes install git
+
+echo "Installing gmp and zlib" # Needed for intero
+sudo yum --assumeyes install gmp-devel zlib-devel
+
+echo "Installing stack, the haskell build tool & curated subset of the hackage.org software repository"
+./getstack
+echo "Appending ~/.local/bin to your PATH environment variable in ~/.bashrc"
+echo "$(cat ~/.bashrc)"$'\n'"export PATH=~/.local/bin:$PATH" >> ~/.bashrc
+source ~/.bashrc
+echo "Installing GHC, the Glorious Haskell Compiler"
+stack setup
+echo "Installing cabal build tool"
+stack install cabal-install
+#stack exec -- cabal install world
+#mv .cabalconfig ~/.cabal/config
+echo "Installing intero development tool"
+stack install intero
+#echo "Installing hoogle documentation"
+#stack install hoogle
+#stack exec -- hoogle generate all
+#echo "Installing hlint code style suggestions"
+#stack install hlint
+
+echo "Installing emacs text editor"
+sudo yum --assumeyes  install emacs
+echo "moving ~/.emacs to ~/.emacsbackup"
+mv ~/.emacs ~/.emacsbackup
+echo "copying dotemacs to ~/.emacs"                                                     
+cp dotemacs ~/.emacs
+
+echo "Downloading atom text editor"
+wget -nc https://atom.io/download/rpm
+mv rpm atom-amd64.rpm
+echo "Installing atom text editor"
+sudo rpm --install atom-amd64.rpm
+
+#Some of the haskell libraries require native dependencies which stack does not install,
+#so we need to use the system package manager.  This works on ubuntu linux, but if you are
+#on windows or OSX you will need to install some other way.
+
+# Qt5 is needed for Supercollider
+echo "Installing Qt5 binaries from qt.io"
+cd ~
+wget -nc http://download.qt.io/official_releases/online_installers/qt-unified-linux-x64-online.run
+chmod +x qt-unified-linux-x64-online.run
+echo "IMPORTANT: After version 5.5, qtwebkit was removed (in favor of qtwebengine)"
+echo "So make sure you install version 5.5!!"
+# (Also, there doesn't seem to be a way to hide gui and automatically install...)
+./qt-unified-linux-x64-online.run
+PATH=$PATH:~/Qt/5.5/gcc_64/bin # Need to add to ~/.bashrc ?
+cd ~/uh-mfc/haskelltalk
+
+echo "Installing fftw" # Needed for supercollider plugins and accelerate
+sudo yum --assumeyes install libfftw-devel
+
+echo "Installing cmake3" # Needed for installing from source (llvm requires version 3)
+sudo yum --assumeyes install cmake3
+
+echo "Installing Supercollider for Tidalcycles algorithmic music from source"
+sudo yum --assumeyes install libudev-devel libsndfile-devel libX11-devel libqxt-devel jack-audio-connection-kit-devel
+wget -nc https://github.com/supercollider/supercollider/releases/download/Version-3.8.0/SuperCollider-3.8.0-Source-linux.tar.bz2
+tar -xf SuperCollider-3.8.0-Source-linux.tar.bz2
+cd SuperCollider-Source
+mkdir build
+cd build
+#QTDIR=~/Qt
+cmake3 -DCMAKE_PREFIX_PATH=~/Qt ..
+make
+sudo make install
+sudo ldconfig
+cd ../..
+
+echo "Installing Supercollider plugins for Tidalcycles algorithmic music from source"
+git clone --recursive https://github.com/supercollider/sc3-plugins.git
+cd sc3-plugins
+#git submodule init && git submodule update
+mkdir build
+cd build
+cmake3 -DSC_PATH=../../SuperCollider-Source ..
+make
+sudo make install
+cd ../..
+
+#Download tidal-mode for emacs
+wget -nc https://raw.github.com/yaxu/Tidal/master/tidal.el
+
+# Now you will need to setup your editor integration.
+# If you're using emacs, the included .emacs file should already have the tidalcycles plugin.
+# Follow the directions at https://tidalcycles.org/getting_started.html
+# In particular, you need enter the following two commands in the supercollider ide before
+# you start Tidalcycles.  (Press shift-enter with your cursor on each line to send each command.)
+#
+# include("SuperDirt")
+# Now go the Language menu and click Recompile Class Library before entering the next command.
+# SuperDirt.start
+
+# If you're using atom, after you install the tidalycles plugin (and all its dependencies), 
+# go to its settings and change the ghci path to
+# /home/your-user-name/uh-mfc/haskelltalk/ghciscript
+# For some reason atom requires an absolute path, not a relative path
+
+echo "Installing csound music from source"
+#sudo yum --assumeyes install csound
+git clone https://github.com/csound/csound.git
+cd csound
+mkdir build
+cd build
+cmake3 ..
+make
+sudo make install
+sudo ldconfig
+cd ../..
+
+echo "Installing LaTeX for HaTeX"
+sudo yum --assumeyes install texlive
+
+#echo "Installing python3 for Matplotlib"
+#sudo yum --assumeyes install -y python3-pip python3-matplotlib python3-numpy python-mpltoolkits.basemap
+
+echo "Installing gnuplot"
+sudo yum --assumeyes install gnuplot
+
+# The following five pairs of lines are needed for the plot library
+echo "Installing cairo vector graphics"
+sudo yum --assumeyes install cairo-devel
+
+# The following two pairs of lines are needed for the hmatrix library
+echo "Installing blas and lapack linear algebra"
+sudo yum --assumeyes install blas-devel lapack-devel
+
+echo "Installing gsl Gnu Scientific Library"
+sudo yum --assumeyes install gsl-devel
+
+echo "Installing pango"
+sudo yum --assumeyes install pango-devel
+
+echo "Installing gtk and gtk3"
+sudo yum --assumeyes install gtk2-devel gtk3-devel
+
+# The following pairs of lines are needed for the accelerate library
+echo "Installing GL, GLU, GLUT, and fftw for accelerate"
+sudo yum --assumeyes install mesa-libGL-devel mesa-libGLU-devel freeglut-devel
+
+echo "Installing llvm 4.0 from source"
+wget -nc http://releases.llvm.org/4.0.0/llvm-4.0.0.src.tar.xz
+tar -xf llvm-4.0.0.src.tar.xz
+sudo mkdir /tmp/build
+cd /tmp/build
+sudo cmake3 -DLLVM_BUILD_LLVM_DYLIB=ON ~/llvm-4.0.0.src
+# BEWARE! llvm takes ~20GB of hard drive space and ~2hrs to build...
+sudo cmake3 --build .
+sudo cmake3 --build . --target install
+cd ~/uh-mfc/haskelltalk
+# Must remove llvm 3.8 or else it will try to link to both 3.8 and 4.0 at runtime and segfault
+#sudo yum --assumeyes remove libllvm3.8
+
+echo "Installing ffi"
+sudo yum --assumeyes install libffi-devel
+
+# The accelerate-cuda backend is currently broken and deprecated
+#echo "Installing nvidia cuda"
+#sudo yum --assumeyes install linux-headers-$(uname -r)
+#wget -nc http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_8.0.61-1_amd64.deb
+#sudo dpkg -i cuda-repo-ubuntu1604_8.0.61-1_amd64.deb
+#sudo yum update
+#sudo yum --assumeyes install cuda
+
+echo "Building. The first time you do a full build may take a long time ~(2 hrs...)"
+stack build
+
+echo "Finished!"
+
+# If your install goes bad, you can just
+# rm -rf ~/.stack ~/.emacs.d ~/uh-mfc/haskelltalk/.stack-work
+# and then reinstall
