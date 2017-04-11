@@ -46,12 +46,15 @@ sudo dpkg --install atom-amd64.deb
 echo "Installing fftw" # Needed for supercollider plugins and accelerate
 sudo apt-get --yes install libfftw3-dev
 
+echo "Installing cmake" # Needed for installing from source (llvm requires version 3)
+sudo yum --assumeyes install cmake
+
 sudo apt-get --yes install libudev-dev libsndfile1-dev libx11-dev libxt-dev
 # Note: There is also libjack-dev and libjack-0 but they only contain one backend
 # and are incompatible with this version which contains two backends
 sudo apt-get --yes install jackd libjack-jackd2-dev libjack-jackd2-0
 # Install qt5 development packages
-sudo apt-get --yes install qtbase5-dev libqt5webkit5-dev libqt5sensors5-dev qtpositioning5-dev qt5tools-dev-tools
+sudo apt-get --yes install qtbase5-dev libqt5webkit5-dev libqt5sensors5-dev qtpositioning5-dev qttools5-dev-tools
 # Note: Install supercollider from source because the version in the ubuntu repos is missing many plugins
 ./install_supercollider
 
