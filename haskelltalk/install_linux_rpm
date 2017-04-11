@@ -154,7 +154,7 @@ wget -nc http://releases.llvm.org/4.0.0/llvm-4.0.0.src.tar.xz
 tar -xf llvm-4.0.0.src.tar.xz
 sudo mkdir /tmp/build
 cd /tmp/build
-sudo cmake3 -DLLVM_BUILD_LLVM_DYLIB=ON ~/llvm-4.0.0.src
+sudo cmake3 -DLLVM_BUILD_LLVM_DYLIB=ON -DLLVM_TARGETS_TO_BUILD="X86;NVPTX;AMDGPU" ~/llvm-4.0.0.src
 # BEWARE! llvm takes ~20GB of hard drive space and ~2hrs to build...
 sudo cmake3 --build .
 sudo cmake3 --build . --target install
