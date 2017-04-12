@@ -95,6 +95,8 @@ flags:
     cuda:       false
     llvm-cpu:   true
     llvm-ptx:   false
+extra-lib-dirs:
+- /usr/local/lib
 # Extra package databases containing global packages
 extra-package-dbs: []
 
