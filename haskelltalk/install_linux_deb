@@ -1,7 +1,8 @@
 echo "This script may take a long time. ~(2 hrs...)"
 
-#Need to create symlink on ubuntu 16.04 and 16.10 to workaround a bug when installing haskelline
-sudo ln -s /lib/x86_64-linux-gnu/libtinfo.so.5 /lib/x86_64-linux-gnu/libtinfo.so
+##Need to create symlink on ubuntu 16.04 and 16.10 to workaround a bug when installing haskelline
+#sudo ln -s /lib/x86_64-linux-gnu/libtinfo.so.5 /lib/x86_64-linux-gnu/libtinfo.so
+sudo apt-get --yes install libtinfo-dev
 
 echo "Installing git version control"
 # Tidalcycles and exference require git
@@ -11,6 +12,8 @@ echo "Installing stack, the haskell build tool & curated subset of the hackage.o
 ./getstack
 echo "Appending ~/.local/bin to your PATH environment variable in ~/.bashrc"
 echo "$(cat ~/.bashrc)"$'\n'"export PATH=~/.local/bin:$PATH" >> ~/.bashrc
+echo "Appending /usr/local/lib to your LD_LIBRARY_PATH environment variable in ~/.bashrc"
+echo "$(cat ~/.bashrc)"$'\n'"export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH" >> ~/.bashrc
 source ~/.bashrc
 echo "Installing GHC, the Glorious Haskell Compiler"
 stack setup

@@ -1,7 +1,8 @@
 echo "This script may take a long time. ~(2 hrs...)"
 
-#Need to create symlink on red hat linux 7.3 to workaround a bug when installing haskelline
-sudo ln -s /usr/lib64/libtinfo.so.5 /usr/lib64/libtinfo.so
+##Need to create symlink on red hat linux 7.3 to workaround a bug when installing haskelline
+#sudo ln -s /usr/lib64/libtinfo.so.5 /usr/lib64/libtinfo.so
+sudo yum --assumeyes install ncurses-devel
 
 echo "Installing git version control"
 # Tidalcycles and exference require git
@@ -14,6 +15,8 @@ echo "Installing stack, the haskell build tool & curated subset of the hackage.o
 ./getstack
 echo "Appending ~/.local/bin to your PATH environment variable in ~/.bashrc"
 echo "$(cat ~/.bashrc)"$'\n'"export PATH=~/.local/bin:$PATH" >> ~/.bashrc
+echo "Appending /usr/local/lib to your LD_LIBRARY_PATH environment variable in ~/.bashrc"
+echo "$(cat ~/.bashrc)"$'\n'"export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH" >> ~/.bashrc
 source ~/.bashrc
 echo "Installing GHC, the Glorious Haskell Compiler"
 stack setup
@@ -113,8 +116,8 @@ wget -nc http://releases.llvm.org/4.0.0/llvm-4.0.0.src.tar.xz
 tar -xf llvm-4.0.0.src.tar.xz
 sudo mkdir /tmp/build
 cd /tmp/build
-sudo cmake3 -DLLVM_BUILD_LLVM_DYLIB=ON -DLLVM_TARGETS_TO_BUILD="X86;NVPTX;AMDGPU" ~/llvm-4.0.0.src
-# BEWARE! llvm takes ~20GB of hard drive space and ~2hrs to build...
+sudo cmake3 -DLLVM_LINK_LLVM_DYLIB=ON -DLLVM_TARGETS_TO_BUILD="X86;NVPTX;AMDGPU" ~/llvm-4.0.0.src
+# BEWARE! llvm takes ~7GB of hard drive space and ~2hrs to build...
 sudo cmake3 --build .
 sudo cmake3 --build . --target install
 cd ~/uh-mfc/haskelltalk
