@@ -127,5 +127,6 @@ extra-package-dbs: []
 
 ghc-options:
     # All packages
-    "*": -Wall -O2
+    "*": -O2
+# -Wall is too much noise
 rebuild-ghc-options: true

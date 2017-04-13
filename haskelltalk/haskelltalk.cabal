@@ -23,9 +23,9 @@ executable haskelltalk-exe
   hs-source-dirs:      app
   main-is:             Main.hs
   other-modules:       Basics, HigherOrder, LazyEvaluation, Records, Types, Category, MutableState, Testing, LambdaCalculus, DependentTypes,
-                       Chart1, Chart2, Chart3, Chart4,
-                       Plot1, Plot2, Plot3, Plot4,
-                       Mandelbrot, Pentaflake, Quasifuchsian, SquareLimit,
+                       Chart.Chart1, Chart.Chart2, Chart.Chart3, Chart.Chart4,
+                       Plot.Plot1, Plot.Plot2, Plot.Plot3, Plot.Plot4,
+                       Diagrams.Mandelbrot, Diagrams.Pentaflake, Diagrams.Quasifuchsian, Diagrams.SquareLimit,
                        GnuPlot,
                        Dimensional, Units1, Units2,
                        AD,
@@ -44,7 +44,7 @@ executable haskelltalk-exe
                      --, extensible-effects
                      , lens
                      , tidal
-                     , csound-expression
+                     , csound-expression, random
                      , ad
                      --, parsec
                      , diagrams, diagrams-lib, diagrams-svg, diagrams-gtk, colour, array

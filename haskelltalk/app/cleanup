@@ -1,5 +1,7 @@
 # remove temporary files
+cd Diagrams
 rm Mandelbrot Pentaflake Quasifuchsian SquareLimit
+cd ..
 rm *~
 rm *.log
 rm *.aux

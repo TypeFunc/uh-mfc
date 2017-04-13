@@ -1,0 +1,10 @@
+Title: The Joy of Functional Programming in Haskell
+
+Abstract:
+The goal of this talk is to get you started programming in Haskell. My goal is to convey to you the experience of pure joy and excitement when using Haskell.  Starting with a basic introduction to the language, we will cover
+1. Development environment and getting set up
+2. More advanced language features
+3. Some mathematical patterns and programming styles
+4. Lots of fancy demos such as plotting, LaTeX, algorithmic music generation, high performance computing, etc.
+5. A little bit of theory
+This will be a coding talk, so we will primarily be walking through code and actually getting setup.  The code (incuding installation scripts) is at https://github.com/TypeFunc/uh-mfc  I hope to cover a lot of material, so I encourage you to check it out but it isn't strictly necessary.

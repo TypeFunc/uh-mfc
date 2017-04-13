@@ -1,3 +1,5 @@
+module Plot.Plot4
+
 import Graphics.Rendering.Plot
 import Numeric.LinearAlgebra
 import Numeric.GSL.Statistics
