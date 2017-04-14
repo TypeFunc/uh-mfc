@@ -15,3 +15,8 @@
 (add-to-list 'load-path "~/uh-mfc/haskelltalk/") ;; Look for tidal.el in ~/uh-mfc/haskelltalk/
 (require 'tidal)
 (setq tidal-interpreter "~/uh-mfc/haskelltalk/ghciscript")
+
+(setenv "LD_LIBRARY_PATH"
+  (let ((current (getenv "LD_LIBRARY_PATH"))
+        (new "/usr/local/lib"))
+    (if current (concat new ":" current) new)))

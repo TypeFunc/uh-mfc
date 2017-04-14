@@ -70,6 +70,9 @@ sudo yum --assumeyes install cmake3
 sudo yum --assumeyes install libudev-devel libsndfile-devel libX11-devel libqxt-devel jack-audio-connection-kit-devel
 ./install_supercollider 3
 
+# Install csound build dependencies
+sudo yum --assume-yes install fltk-fluid fltk-devel luajit-devel boost-devel libcurl-devel java-1.8.0-openjdk-devel alsa-lib-devel python-devel eigen3-devel portaudio-devel portmidi-devel
+
 echo "Installing csound music from source"
 git clone https://github.com/csound/csound.git
 cd csound

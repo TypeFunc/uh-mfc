@@ -1,4 +1,4 @@
-module CSound where
+module Weierstrass where
 
 import Csound.Base
 import Csound.Tab
