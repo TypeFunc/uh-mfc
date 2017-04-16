@@ -141,6 +141,9 @@ sudo yum --assumeyes install libffi-devel
 echo "Building. The first time you do a full build may take a long time ~(2 hrs...)"
 stack build
 
+echo "Installing the z3 theorem prover"
+sudo yum --assumeyes install z3
+
 echo "Finished!"
 
 # If your install goes bad, you can just

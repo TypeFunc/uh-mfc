@@ -23,14 +23,17 @@ executable haskelltalk-exe
   hs-source-dirs:      app
   main-is:             Main.hs
   other-modules:       Basics, HigherOrder, LazyEvaluation, Records, Types, Category, MutableState, Testing, LambdaCalculus, DependentTypes,
-                       Chart1, Chart2, Chart3, Chart4,
-                       Plot1, Plot2, Plot3, Plot4,
-                       Mandelbrot, Pentaflake, Quasifuchsian, SquareLimit,
+                       Chart.Chart1, Chart.Chart2, Chart.Chart3, Chart.Chart4,
+                       Plot.Plot1, Plot.Plot2, Plot.Plot3, Plot.Plot4,
+                       --Use diagrams script in app/Diagrams
+                       --Diagrams.Mandelbrot, Diagrams.Pentaflake, Diagrams.Quasifuchsian, Diagrams.SquareLimit,
                        GnuPlot,
                        Dimensional, Units1, Units2,
                        AD,
-                       CSound,
-                       HaTeX
+                       Weierstrass,
+                       HaTeX,
+                       Satisfiability,
+                       SizeIndexedVectors
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   build-depends:       base
 -- Note: if you want to install Agda and/or Idris, I recommend doing a 'stack build' first,
@@ -44,8 +47,8 @@ executable haskelltalk-exe
                      --, extensible-effects
                      , lens
                      , tidal
-                     , csound-expression
-                     , ad
+                     , csound-expression, random
+                     , ad, simple-reflect
                      --, parsec
                      , diagrams, diagrams-lib, diagrams-svg, diagrams-gtk, colour, array
                      , Chart, Chart-cairo, Chart-gtk
@@ -77,6 +80,7 @@ executable haskelltalk-exe
                      --, unordered-containers
                      --, vectors
                      , accelerate, accelerate-examples
+                     , sbv
                      --, repa
                      --, yesod
                      --, criterion

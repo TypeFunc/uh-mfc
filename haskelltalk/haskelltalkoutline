@@ -16,17 +16,17 @@ Basics
 strong static types & type signatures, immutability/purity, lazy evaluation
 polymorphic data types
 pattern matching, partial evaluation i.e. fixing
-higher-order functions (Ex: map/reduce) (Ex: lazy accumulator?)
 point-free style (i.e. eta reduction is partial evaluation)
 type inference! (Ex: beautiful error messages)
 IO & do notation (without monads)
 read . show for basic serialization
 
+Higher-order functions (Ex: map/reduce) (Ex: lazy accumulator?)
+
 Lazy evaluation (infinite data structures, composability, etc.)
 
 Types
 
---Think of types as "assertions as to the potential values of a given term" not "storage classification systems".
 Sum Types and Product Types form an Algebra (steal zipper example?)
 type-driven development
 type holes _ infer type of hole, then look up possible functions using M-x haskell-hoogle
@@ -36,14 +36,9 @@ higher kinded data types
 ADTs & GADTs (Ex: lambda calculus interpreter / compiler)
 
 type classes & category theory
-
-First of all, type classes are not like the classes in object oriented programming; they are more like interfaces i.e. any type which is an instance of a type class must implement all of the class functions.
-The collection of all types (including function types a -> b !) forms a category* called Hask, where the objects are types and the morphisms are functions for concrete types and Functors for function types.  Note that a | b and (a,b) correspond to the sum and product of types, so Hask is an algebra.   So a type class is just a subcategory of Hask.
-StringLike example
-(note: type class laws (i.e. category axioms) must be manually verified)
 monoid, functor, applicative, monad, foldable, traversable (note: deriving is awesome!)
 Instances: Maybe (no nulls!) & short circuiting, Either (almost no exceptions!),
-IO & do notation, Reader, Writer, State (random number generators)
+IO & do notation
 
 Libraries demos
 
@@ -54,28 +49,30 @@ latex with HaTeX
 algorithmic music with Tidalcycles and Csound expression
 statically checked units with dimensional and units
 automatic differentiation with ad
+satisfiability modulo theories with sbv
+cloud haskell with distributed-process
+high performance computing with accelerate
 
 -------------------------------TODO-------------------------------
 
 advanced topics
 
 monad transformers with mtl (STEAL STEPHEN DIEHL'S EXAMPLE)
+ -Reader, Writer, State transformers (Ex: random number generators)
 extensible-effects
 free monads w/ interpreter
 Kleisli arrows
 phantom types
 continuation passing style
 combinatory style
-totality & bottom (Ex: let x = x in x)
+totality & bottom (Ex: let x = x in x, error, undefined)
 
 performance & concurrency
 
 RULES pragmas / shortcut fusion
 profiling with criterion, weigh
 lightweight/green threads
-data parallel haskell?
 repa?
-cloud haskell?
 
 Libraries demos
 
@@ -92,5 +89,5 @@ R language bindings with H & inlineR
 
 dependent types
 
-length indexed vectors / dimension indexed graded rings
+dimension indexed graded rings
 red black trees?

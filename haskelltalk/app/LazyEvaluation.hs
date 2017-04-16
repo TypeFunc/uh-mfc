@@ -1,3 +1,4 @@
+{-# LANGUAGE BangPatterns #-}
 
 module LazyEvaluation where
 
@@ -5,6 +6,7 @@ import Basics --import everything (useful for autocomplete)
 import Basics (fib) -- can also import just the functions listed here
 
 import Control.Applicative (Alternative)
+import Data.Array (array, (!))
 
 {- Lazy evaluation is kind of like electricity: it's basic and pervasive in the sense that
 you don't know you need it until you have it, but then you can't imagine living without it.
@@ -21,14 +23,24 @@ is NOT the same as
 let x = error "BOO!" --this will immediately evaluate error!
     in  if c then x else 0
 
-Lazy evaluation lets us define our own control structures. (No macros needed!)
-f x = do
-    when (x < 0) (error "x must be >= 0")
-    -- note: when is just a regular function! (not some special syntax)
-    ... otherwise do some other stuff
+Lazy evaluation lets us define our own control structures. (No macros needed!) -}
+if' :: Bool -> a -> a -> a
+if' True  x _ = x
+if' False _ y = y
+{- In Haskell, evaluation is driven by pattern matching on type constructors.
+  Since we are only pattern matching on the Bool constructors, we can choose to
+  evaluate x or y at the use site (or neither). -}
+f x = if' (x < 0) (error "x must be >= 0") "OK!"
 
-Lazy evaluation helps with code reuse.  In a strict language,
-this would not short circuit properly!
+uncurry3 :: (a -> b -> c -> d) -> ((a, b, c) -> d)
+uncurry3 f (x,y,z) =  f x y z
+
+-- Since if' is just a regular function, we can map our new control structure over some code!
+results = map (uncurry3 if') [(True,"Hwat!?", error ""), (True, "Okay!", error ""),
+                              (True, "Yeah!", error ""), (False, error "Oh no!" , error "Oh no!")]
+goodresults = take 3 results -- ["Hwat!?","Okay!","Yeah!"]
+
+{- Lazy evaluation helps with code reuse.  In a strict language, this would not short circuit properly!
 any :: (a -> Bool) -> [a] -> Bool
 any p = or . map p
 
@@ -49,8 +61,7 @@ bar input = do
     when b (print (foo input))  --manually inline foo input call
 But manually copy & pasteing code is bad!  Lazy evaluation lets us write composable code!
 
--}
-
+Lazy evaluation also allows us to create infinite data structures. -}
 fives = take 10 (repeat 5)
 --[5,5,5,5,5,5,5,5,5,5]
 splitfives = (head fives, tail fives)
@@ -85,6 +96,37 @@ noleaky = do
   let h = take 1 $ bigstring -- Get a separate reference to the first element
   putStrLn $ take 1 $ drop 1000000 bigstring -- and now we can garbage collect :)
   putStrLn $ h
+
+-- The other common case where space leaks occur is with a lazy accumulator
+listoflists = [[0..9],[10..19],[20..29]]
+lazyaccumulator = foldl (++) [] listoflists
+
+strictconcat !x y = x ++ y -- The ! is called a "bang patten" and forces evaluation
+strictaccumulator = foldl strictconcat [] listoflists
+
+-- Lazy evaluation allows us to use the technique of dynamic programming to solve the knapsack problem.
+-- https://en.wikipedia.org/wiki/Knapsack_problem
+knapsack01 :: [Double]   -- values 
+           -> [Integer]  -- nonnegative weights
+           -> Integer    -- knapsack size
+           -> Double     -- max possible value
+knapsack01 vs ws maxW = m!(numItems-1, maxW)
+  where numItems = length vs
+     -- The array function creates the array m
+        m = array ((-1,0), (numItems-1, maxW)) $
+              [((-1,w), 0) | w <- [0 .. maxW]] ++
+              [((i,0), 0) | i <- [0 .. numItems-1]] ++
+              [((i,w), best) 
+                  | i <- [0 .. numItems-1]
+                  , w <- [1 .. maxW]
+                  , let best
+                          | ws!!i > w  = m!(i-1, w)
+                          | otherwise = max (m!(i-1, w)) 
+                                            (m!(i-1, w - ws!!i) + vs!!i)]
+     -- But due to lazy evaluation we can refer to m inside of the expression that is creating it.
+     -- Note the lack of explicit looping or mutation!
+example = knapsack01 [3,4,5,8,10] [2,3,4,5,9] 20
+
 
 --recursive data types
 data Tree a = Leaf a | Bin (Tree a) (Tree a)

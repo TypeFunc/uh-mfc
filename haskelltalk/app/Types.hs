@@ -1,6 +1,8 @@
 module Types where
 
-{-data declarations are used to create new 'types'.  "Rectangle" is the name of the new type, whereas "Rect" is the name of the type constructor. Sometimes the same name is used for both, but they are distinct! -}
+import Prelude hiding (Maybe, Either)
+
+{-  In C/C++/Java, etc. an Integer is just a certain pattern of bits in memory.  In Haskell, types are more algebraic. Think of types as "assertions as to the potential values of a given term" not "storage classification systems".  data declarations are used to create new 'types'.  "Rectangle" is the name of the new type, whereas "Rect" is the name of the type constructor. Sometimes the same name is used for both, but they are distinct! -}
 data Rectangle a = Rect a a --length & width. "a" is a numeric type parameter (Float, Double, etc).
 
 area :: Num a => Rectangle a -> a -- "Rectangle" is used in the type signature,
@@ -18,21 +20,17 @@ cost (Area x) cost_per_unit_area = x*cost_per_unit_area
 cost1 = cost (area' (Rect 3 4)) 2
 --cost2 = cost (area (Rect 3 4)) 2 --compile error! :)
 
---Type classes
-data List a b = Nil | Cons a b (List a b)
-instance Functor (List a) where
-  fmap f Nil = Nil
-  fmap f (Cons a b list) = Cons a (f b) (fmap f list)
-
-data MyType a = MT a
-instance Functor MyType where
-  fmap f (MT a) = MT (f a)
-
-data Pair a b = P a b
-instance Functor (Pair a) where
-  fmap f (P a b) = P a (f b)
-
----------------------------------------------------------
+------------------Some Common Types----------------------------
+data Maybe a = Nothing | Just a
+{- Maybe is used for computations which may fail.  Instead of throwing an exception or returning
+a null pointer, we return the Nothing data constructor, and then the compiler can enforce that
+the caller handles both constructors. This is a Big Deal.
+The vertical bar | is used to form the sum (basically disjoint union) of two types. -}
+data  Either a b  =  Left a | Right b
+{- Either is also used for computations which may fail.  Instead of returning Nothing,
+we can return some useful information (such as an error message). Again, the compiler
+can enforce that the caller handles both constructors. -}
+---------------------------------------------------------------
 
 data Day = Monday | Tuesday | Wednesday | Thursday | Friday | Saturday | Sunday  
 
@@ -74,3 +72,26 @@ rb1 = RR (B 1.0) M
 rb2 = BB (R 2) L
 rb3 = RR (BB (R 1) (R 2)) (B 3.0)
 rb4 = BB (R 1) (RR (B 2.0) (BB (R 3) (R 4)))
+
+-- TODO insert
+
+{-Type classes are like "interfaces" (as opposed to the "classes" from object oriented programming)
+, i.e. any type which is an instance of a type class must implement all of the class functions.
+Suppose we didn't like the way lists and pairs are printed by default.  We can do this:  -}
+class StringLike a where
+  toString :: a -> String
+
+instance Show a => StringLike [a] where
+  toString xs = concat $ map show xs
+instance (Show a, Show b) => StringLike (a,b) where
+  toString (x,y) = show x ++ show y
+instance Show a => StringLike (Area a) where
+  toString (Area a) = "Area: " ++ show a
+
+makeString :: StringLike a => a -> String
+makeString x = toString x
+-- The point of type classes is that we can write code that works for any type in the class:
+liststring = makeString [1,2,3]    -- "123" 
+pairstring = makeString ('x','y')  -- "'x''y'"
+areastring = makeString $ Area 51  -- "Area: 51"
+-- Type classes allow us to bundle together separate types, which is very useful.

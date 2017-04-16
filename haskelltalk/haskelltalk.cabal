@@ -31,7 +31,9 @@ executable haskelltalk-exe
                        Dimensional, Units1, Units2,
                        AD,
                        Weierstrass,
-                       HaTeX
+                       HaTeX,
+                       Satisfiability,
+                       SizeIndexedVectors
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   build-depends:       base
 -- Note: if you want to install Agda and/or Idris, I recommend doing a 'stack build' first,
@@ -78,6 +80,7 @@ executable haskelltalk-exe
                      --, unordered-containers
                      --, vectors
                      , accelerate, accelerate-examples
+                     , sbv
                      --, repa
                      --, yesod
                      --, criterion
