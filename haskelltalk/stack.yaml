@@ -18,7 +18,7 @@
 
 #compiler: ghc-8.2.0.20170404
 compiler-check: match-exact
-resolver: lts-8.9
+resolver: lts-8.11
 setup-info:
   ghc:
     linux64:
@@ -65,9 +65,9 @@ extra-deps:
 - accelerate-fft-1.0.0.0
 - accelerate-io-1.0.0.0
 - colour-accelerate-0.1.0.0
-- gloss-accelerate-0.2.0.0
+- gloss-accelerate-2.0.0.0
 - linear-accelerate-0.3
-- gloss-raster-accelerate-0.2.0.0
+- gloss-raster-accelerate-2.0.0.0
 - lens-accelerate-0.1.0.0
 - normaldistribution-1.1.0.3
 - unique-0
@@ -78,6 +78,8 @@ extra-deps:
 - chaselev-deque-0.5.0.5
 - llvm-hs-pure-4.0.0.0
 - gtk2hs-buildtools-0.13.2.2
+- picosat-0.1.4
+- picologic-0.3.0
 allow-newer: true
 # Override default flag values for local packages and extra-deps
 flags:
