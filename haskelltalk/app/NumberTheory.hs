@@ -21,7 +21,13 @@ factorization4 = sieveFactor sieve 987654321 -- [(3,2),(17,2),(379721,1)]
 smallfactors1 = smallFactors 1000 123456789 -- ([(3,2)],Just 13717421)
 smallfactors2 = smallFactors 1000 987654321 --([(3,2),(17,2),(379721,1)],Nothing)
 
-tot1, tot2 :: Integer -- Note: need a type signature due to ambiguous type of numeric literals
+tot1, tot2 :: Integer
+{- Note: If we omit this type signature, the compiler will complain about an
+ambiguous type variable.  This is because numeric literals are polymorphic,
+and so the compiler can't determine if 123456789 is an Int or an Integer,
+and thus it can't determine which implementation of the corresponding
+type class to use.  This is precisely the phenomenon mentioned in Note 3 of
+Category.hs  Again, the solution is simply to supply a type signature.-}
 tot1 = totient 123456789 -- 82260072
 tot2 = totient 987654321 -- 619703040
 

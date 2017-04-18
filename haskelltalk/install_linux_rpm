@@ -141,8 +141,17 @@ sudo yum --assumeyes install libffi-devel
 echo "Building. The first time you do a full build may take a long time ~(2 hrs...)"
 stack build
 
-echo "Installing the z3 and picosat theorem provers"
-sudo yum --assumeyes install z3 picosat
+echo "Installing the picosat theorem prover"
+sudo yum --assumeyes install picosat
+
+echo "Installing the z3 theorem prover from source"
+git clone https://github.com/Z3Prover/z3.git
+cd z3
+python scripts/mk_make.py
+cd build
+make
+sudo make install
+cd ../..
 
 echo "Finished!"
 

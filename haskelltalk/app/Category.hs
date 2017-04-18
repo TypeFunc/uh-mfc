@@ -118,7 +118,16 @@ instance Monad ((->) r) where
     f >>= k = \ r -> k (f r) r
 instance Monoid a => Monad ((,) a) where
     (u, a) >>= k = case k a of (v, b) -> (u `mappend` v, b)
-{- do notation is usually first encountered in the context of IO, but in fact it works for any monad.
+{- Note 1: In the above formulation of monads, the monoidal structure is hard to see because
+the type signature of bind is not symmetric with respect to the first two arguments.
+However, if we use so-called Kleisli composition,
+(>=>)       :: Monad m => (a -> m b) -> (b -> m c) -> (a -> m c)
+f >=> g     = \x -> f x >>= g
+we see that the types of the first two arguments of the Kleisli arrow (>=>) are symmetric.
+So now we can use bind to do the final computation (See Law 3 above) m >>= (f >=> g >=> h)
+Moreover, it's hard to see how bind could possibly work. How do you get a value of type a
+from a value of type m a??? By pattern matching on the type constructors! See above instances. -}
+{- Note 2: do notation is usually first encountered in the context of IO, but in fact it works for any monad.
 do notation gets translated or "desugared" as follows:
 
 do { a <- f ; m } = f >>= \a -> do { m }
@@ -139,7 +148,29 @@ f >>= \a ->
   g >>= \b ->
     h >>= \c ->
       return (a, b, c)
--}
+
+Note that the results of all previous monadic computations are available to the subsequent
+monadic computations.  (This is intentionally not true for the Applicative type class.) -}
+{- Note 3: When you use an instance of a type class in a function, the compiler adds an
+additional parameter to the function. The additional parameter is a dictionary / hashmap
+which contains the names of the type class functions as keys and the function bodies as values.
+You can usually ignore this transformation, but if you are not aware of this and the compiler
+is not able to infer a unique type at the use site, you may find some of the error messages
+unpleasant.  The solution is simply to supply a type signature.
+For more details on this transformation, see the following blog posts:
+https://www.schoolofhaskell.com/user/jfischoff/instances-and-dictionaries
+http://www.haskellforall.com/2012/05/scrap-your-type-classes.html -}
+myreturn1 :: Monad m => a -> m a
+myreturn1 x = return x
+myreturn2 :: Monad m => a -> m a
+myreturn2   = \x -> return x
+myreturn3 :: Monad m => a -> m a
+myreturn3   = return
+{- myreturn1 will compile with or without a type signature, but myreturn2 and myreturn3 will not!
+This is due to the so-called Monomorphism Restriction:
+https://wiki.haskell.org/Monomorphism_restriction
+This demonstrates that a function and its eta reduction are not *exactly* the same!
+We will see this phenomenon again in one of the demos. -}
 
 example1 :: Maybe Int
 example1 = Just 3 >>= \a ->

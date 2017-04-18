@@ -56,6 +56,18 @@ puzzle = do
 
 {- Answer: Yep! -}
 bandaid = allSat puzzle
+{-Solution #1:
+  b = 4 :: Integer
+  u = 1 :: Integer
+  r = 5 :: Integer
+  i = 9 :: Integer
+  t = 7 :: Integer
+  o = 0 :: Integer
+  m = 8 :: Integer
+  n = 3 :: Integer
+  a = 2 :: Integer
+  d = 6 :: Integer
+This is the only solution. -}
 
 -- | Find the value of a list of base 10 digits, i.e.
 -- | 1234 = 1*10^3 + 2*10^2 + 3*10^1 + 4*10^0 = (((1)*10 + 2)*10 + 3)*10 + 4
