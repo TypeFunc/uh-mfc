@@ -1,85 +1,27 @@
-#!/bin/bash
-# Installation script for configuring Haskell on Ubuntu 16.04 LTS
-# by Jake Fennick and William DeMeo <williamdemeo@gmail.com>
-# Date: 2017.04.18
-# Last Modified: 2017.04.18
-
-echo
-echo 'This script will install/configure some useful tools on a Ubuntu Linux machine.'
-echo
-echo 'Here is a list of what we will attempt to install:'
-echo
-echo '    1. libtinfo-dev'
-echo '    2. git-core (main components required to use Git version control software)'
-echo '    3. stack (the haskell build tool & curated subset of hackage.org software)'
-echo '    4. GHC (the Glorious Haskell Compiler)'
-echo '    5. intero development tool'
-echo '    6. (optionally) the Emacs editor '
-echo '    7. the atom text editor'
-echo '    9. Installing/upgrading cmake  (needed for installing from source)'
-echo '   10. various libs (libudev-dev libsndfile1-dev libx11-dev libxt-dev)'
-echo '   11. jackd (libudev-dev libsndfile1-dev libx11-dev libxt-dev)'
-echo '   12. qtbase5-dev libqt5webkit5-dev libqt5sensors5-dev qtpositioning5-dev qttools5-dev-tools'
-echo '   13. supercollider from source because the version that ships with '
-echo '   14. csound'
-echo '   15. LaTeX for HaTeX'
-echo '   16. gnuplot'
-echo '   17. cairo vector graphics (needed for the plot library)'
-echo '   18. blas and lapack (needed for the hmatrix library)'
-echo '   19. gsl Gnu Scientific Library'
-echo '   20. pango'
-echo '   21. gtk and gtk3'
-echo '   22. GL, GLU, GLUT, and llvm-4.0 for accelerate'
-echo '   23. z3 picosat theorem provers'
-echo ' '
-echo
-read -p 'Abort this setup script? [Y/n]' -n 1 -r
-if [[ $REPLY =~ ^[Yy]$ ]] 
-then
-    echo
-    echo 'Setup aborted.'
-    echo
-    exit
-fi
-
-HASKELLTALK_DIR="."
-
-echo
-echo "ATTENTION: if this script fails, it might mean you "
-echo "need to edit the variable $HASKELLTALK_DIR in the file " $(basename $0)
-echo " "
+echo "This script may take a long time. ~(2 hrs...)"
 
 ##Need to create symlink on ubuntu 16.04 and 16.10 to workaround a bug when installing haskelline
 #sudo ln -s /lib/x86_64-linux-gnu/libtinfo.so.5 /lib/x86_64-linux-gnu/libtinfo.so
-echo '[1/23] Installing/upgrading libtinfo-dev'
-echo
 sudo apt-get --yes install libtinfo-dev
 
-echo '[2/23] Installing/upgrading git-core (main components required to use Git software)'
-echo
-sudo apt-get install -y git-core
 echo "Installing git version control"
 # Tidalcycles and exference require git
-# sudo apt-get --yes install git
+sudo apt-get --yes install git
 
-echo '[3/23] Installing/upgrading stack (haskell build tool & curated subset of hackage.org software)'
-echo
-$HASKELLTALK_DIR/getstack
-mkdir -p ~/.local/bin
+echo "Installing stack, the haskell build tool & curated subset of the hackage.org software repository"
+./getstack
 echo "Appending ~/.local/bin to your PATH environment variable in ~/.bashrc"
 echo "$(cat ~/.bashrc)"$'\n'"export PATH=~/.local/bin:$PATH" >> ~/.bashrc
 echo "Appending /usr/local/lib to your LD_LIBRARY_PATH environment variable in ~/.bashrc"
 echo "$(cat ~/.bashrc)"$'\n'"export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH" >> ~/.bashrc
 source ~/.bashrc
-
-echo '[4/23] Installing/upgrading GHC (the Glorious Haskell Compiler)'
-echo 
+echo "Installing GHC, the Glorious Haskell Compiler"
+stack setup
+echo "Installing cabal build tool"
 stack install cabal-install
 #stack exec -- cabal install world
 #mv .cabalconfig ~/.cabal/config
-
-echo '[5/23] Installing/upgrading intero development tool'
-echo 
+echo "Installing intero development tool"
 stack install intero
 #echo "Installing hoogle documentation"
 #stack install hoogle
@@ -87,123 +29,68 @@ stack install intero
 #echo "Installing hlint code style suggestions"
 #stack install hlint
 
-echo '[6/23] Installing the Emacs editor(?)'
-echo
-if type -p emacs; then
-    echo '    Found Emacs executable in PATH.'
-    read -p '    May we replace your existing .emacs file with a customized one? [Y/n]' -n 1 -r
-    if [[ $REPLY =~ ^[Yy]$ ]]
-    then
-	echo "moving ~/.emacs to ~/.emacsbackup"
-	mv ~/.emacs ~/.emacsbackup
-	echo "copying dotemacs to ~/.emacs"                                                     
-	cp dotemacs ~/.emacs
-    else
-	echo 
-	echo '    WARNING: skipping emacs customization!'
-	echo ' '
-	echo '    You may have to manually add the contents of `dotemacs` to your .emacs file. '
-	echo
-    fi
-else
-    echo
-    read -p '    No emacs found in PATH. Install it? [Y/n]' -n 1 -r
-    if [[ $REPLY =~ ^[Yy]$ ]]
-    then
-	sudo apt-get --yes install emacs
-	read -p '    May we replace your existing .emacs file with a customized one? [Y/n]' -n 1 -r
-	if [[ $REPLY =~ ^[Yy]$ ]]
-	then
-	    echo "moving ~/.emacs to ~/.emacsbackup"
-	    mv ~/.emacs ~/.emacsbackup
-	    echo "copying dotemacs to ~/.emacs"                                                     
-	    cp dotemacs ~/.emacs
-	else
-	    echo 
-	    echo '    WARNING: skipping emacs customization!'
-	    echo ' '
-	    echo '    You should manually add the contents of `dotemacs` to your .emacs file. '
-	    echo
-	fi
-    else
-	echo 
-	echo '   Warning: skipping emacs setup!!!'
-	echo
-    fi
-fi
+echo "Installing emacs text editor"
+sudo apt-get --yes  install emacs
+echo "moving ~/.emacs to ~/.emacsbackup"
+mv ~/.emacs ~/.emacsbackup
+echo "copying dotemacs to ~/.emacs"                                                     
+cp dotemacs ~/.emacs
 
-echo '[7/23] Installing/upgrading the atom text editor'
-echo
-wget -O atom-amd64.deb -nc https://atom.io/download/deb  
+echo "Downloading atom text editor"
+wget -nc https://atom.io/download/deb
+mv deb atom-amd64.deb
+echo "Installing atom text editor"
 sudo dpkg --install atom-amd64.deb
 
 #Some of the haskell libraries require native dependencies which stack does not install,
 #so we need to use the system package manager.  This works on ubuntu linux, but if you are
 #on windows or OSX you will need to install some other way.
 
-echo '[8/23] Installing/upgrading fftw  (for supercollider plugins and accelerate)'
-echo
+echo "Installing fftw" # Needed for supercollider plugins and accelerate
 sudo apt-get --yes install libfftw3-dev
 
-echo '[9/23] Installing/upgrading cmake  (needed for installing from source)'
-echo '                                (llvm requires version 3)'
-sudo apt-get --yes install cmake
+echo "Installing cmake" # Needed for installing from source (llvm requires version 3)
+sudo yum --assumeyes install cmake
 
-echo '[10/23] Installing/upgrading various libs (libudev-dev libsndfile1-dev libx11-dev libxt-dev)'
-echo
 sudo apt-get --yes install libudev-dev libsndfile1-dev libx11-dev libxt-dev
 # Note: There is also libjack-dev and libjack-0 but they only contain one backend
 # and are incompatible with this version which contains two backends
-
-echo '[11/23] Installing/upgrading jackd (libudev-dev libsndfile1-dev libx11-dev libxt-dev)'
-echo
 sudo apt-get --yes install jackd libjack-jackd2-dev libjack-jackd2-0
 # Install qt5 development packages
-
-echo '[12/23] Installing/upgrading qtbase5-dev libqt5webkit5-dev libqt5sensors5-dev qtpositioning5-dev qttools5-dev-tools'
-echo
 sudo apt-get --yes install qtbase5-dev libqt5webkit5-dev libqt5sensors5-dev qtpositioning5-dev qttools5-dev-tools
-
-echo '[13/23] Installing/upgrading supercollider from source because the version that ships with '
-echo '     ubuntu is missing many plugins'
-echo
+# Note: Install supercollider from source because the version in the ubuntu repos is missing many plugins
 ./install_supercollider
 
-echo '[14/23] Installing/upgrading csound'
-echo
-sudo apt-get --yes install csound 
+sudo apt-get --yes install csound #csound-gui
 
-echo '[15/23] Installing/upgrading LaTeX for HaTeX'
-echo
+echo "Installing LaTeX for HaTeX"
 sudo apt-get --yes install texlive
 
-echo '[16/23] Installing/upgrading gnuplot'
-echo
+#echo "Installing python3 for Matplotlib"
+#sudo apt-get --yes install -y python3-pip python3-matplotlib python3-numpy python-mpltoolkits.basemap
+
+echo "Installing gnuplot"
 sudo apt-get --yes install gnuplot
 
-echo '[17/23] Installing/upgrading cairo vector graphics needed for the plot library'
-echo
-sudo apt-get --yes install libcairo2-dev  
+# The following five pairs of lines are needed for the plot library
+echo "Installing cairo vector graphics"
+sudo apt-get --yes install libcairo2-dev
 
-echo '[18/23] Installing/upgrading blas and lapack (needed for the hmatrix library)'
-echo
+# The following two pairs of lines are needed for the hmatrix library
+echo "Installing blas and lapack linear algebra"
 sudo apt-get --yes install libblas-dev liblapack-dev
 
-echo '[19/23] Installing/upgrading gsl Gnu Scientific Library'
-echo
+echo "Installing gsl Gnu Scientific Library"
 sudo apt-get --yes install libgsl-dev
 
-echo '[20/23] Installing/upgrading pango'
-echo
+echo "Installing pango"
 sudo apt-get --yes install libpango1.0-dev
 
-echo '[21/23] Installing/upgrading gtk and gtk3'
-echo
+echo "Installing gtk and gtk3"
 sudo apt-get --yes install libgtk2.0-dev libgtk-3-dev
 
 # The following pairs of lines are needed for the accelerate library
-echo '[22/23] Installing/upgrading GL, GLU, GLUT, and llvm-4.0 for accelerate'
-echo
+echo "Installing GL, GLU, GLUT, and llvm-4.0 for accelerate"
 sudo apt-get --yes install libgl1-mesa-dev libglu1-mesa-dev freeglut3
 sudo add-apt-repository ppa:ubuntu-x-swat/updates -y
 sudo apt-get update
@@ -219,20 +106,14 @@ sudo apt-get --yes remove libllvm3.8
 #sudo apt-get update
 #sudo apt-get --yes install cuda
 
-echo '[23/23] Installing/upgrading z3 picosat theorem provers'
-echo
+echo "Installing the z3 and picosat theorem provers"
 sudo apt-get --yes install z3 picosat
 
-echo "###################################################################################"
-echo "#  ------------------------------------------------------------------------------ #"
-echo "#  Building! The first time you do a full build may take a long time ~(2 hrs...)  #"
-echo "#  If this fails, you might try `stack setup` followed by `stack build`           #"
-echo "#                                                                                 #"
+echo "Building. The first time you do a full build may take a long time ~(2 hrs...)"
 stack build
-echo "#                                                                                 #"
-echo "#  If your install goes bad, try                                                  #"
-echo "#      `rm -rf ~/.stack $UH_MFC_DIR/haskelltalk/.stack-work`                      #"
-echo "#  and then re-run the install script                                             #"
-echo "#                                                                                 #"
-echo "###################################################################################"
 
+echo "Finished!"
+
+# If your install goes bad, you can just
+# rm -rf ~/.stack ~/.emacs.d ~/uh-mfc/haskelltalk/.stack-work
+# and then reinstall
