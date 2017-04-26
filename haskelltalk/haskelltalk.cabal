@@ -34,7 +34,8 @@ executable haskelltalk-exe
                        HaTeX,
                        Satisfiability,
                        SizeIndexedVectors,
-                       NumberTheory
+                       NumberTheory,
+                       Accelerate
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   build-depends:       base
 -- Note: if you want to install Agda and/or Idris, I recommend doing a 'stack build' first,
@@ -81,6 +82,8 @@ executable haskelltalk-exe
                      --, unordered-containers
                      --, vectors
                      , accelerate, accelerate-examples
+                     , accelerate-llvm-native
+                     --, accelerate-llvm-ptx
                      , sbv, picosat, picologic
                      , arithmoi
                      --, repa
