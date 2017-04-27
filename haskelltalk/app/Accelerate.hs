@@ -2,7 +2,7 @@ module Accelerate where
 
 import Data.Array.Accelerate              as A
 import Data.Array.Accelerate.LLVM.Native  as CPU
-import Data.Array.Accelerate.LLVM.PTX     as GPU
+--import Data.Array.Accelerate.LLVM.PTX     as GPU
 
 import Control.Exception
 import Data.Time
@@ -14,7 +14,7 @@ xs = fromList (Z:.75000000) [0..]   :: Vector Float
 ys = fromList (Z:.75000000) [1,3..] :: Vector Float
 
 cpuresult = CPU.run $ dotp (use xs) (use ys)
-gpuresult = GPU.run $ dotp (use xs) (use ys)
+--gpuresult = GPU.run $ dotp (use xs) (use ys)
 
 main = do
     start1 <- getCurrentTime
@@ -23,7 +23,7 @@ main = do
     print (diffUTCTime end1 start1)
     
     start2 <- getCurrentTime
-    putStrLn $ show gpuresult
+    --putStrLn $ show gpuresult
     end2 <- getCurrentTime
     print (diffUTCTime end2 start2)
 {-
