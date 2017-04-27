@@ -69,6 +69,7 @@ executable haskelltalk-exe
                      -- The next two lines are needed for Matplotlib
                      --, random, raw-strings-qq, temporary, bytestring, process, split
                      --, tasty, tasty-expected-failure, tasty-hunit, tasty-golden
+                     , QuickCheck, hedgehog
                      , stm
                      --, morte
                      --, recursion-schemes

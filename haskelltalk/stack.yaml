@@ -55,7 +55,6 @@ extra-deps:
 - csound-expression-opcodes-0.0.3.2
 - csound-expression-typed-0.2.0.0
 - temporal-media-0.6.1
-- data-fix-0.0.3
 - data-fix-cse-0.0.2
 - gnuplot-0.5.4.1
 - data-accessor-transformers-0.2.1.7
@@ -70,10 +69,10 @@ extra-deps:
 - gloss-raster-accelerate-2.0.0.0
 - lens-accelerate-0.1.0.0
 - normaldistribution-1.1.0.3
-- unique-0
 - llvm-hs-4.0.1.0
 - accelerate-llvm-1.0.0.0
 - accelerate-llvm-native-1.0.0.0
+- hedgehog-0.1
 # If you want to use your (Nvidia) GPU with accelerate, uncomment the next three packages,
 # set llvm-ptx to true below, uncomment the GPU lines in app/Accelerate.hs
 # and uncomment accelerate-llvm-ptx in haskelltalk.cabal

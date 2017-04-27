@@ -1,7 +1,9 @@
 module Category where
 
 -- Hide everything from the prelude except what we need
-import Prelude (Int, Double, IO, Maybe (..), Either (..), (.), (+), ($), (<), (++), sqrt, getLine, putStrLn, foldr, concat, map, const)
+import Prelude (Int, Integer, Double, IO, Maybe (..), Either (..), (.), (+), (*), ($), (<), (++), sqrt, getLine, putStrLn, foldr, concat, map, const)
+
+import Data.Foldable
 
 {- A category is a collection of "objects" and "morphisms" such that composition of morphisms is
 associative and there is an identity morphism for each object.  I.E, given morphisms
@@ -60,6 +62,18 @@ instance Monoid a => Monoid (Maybe a) where
   Just m1 `mappend` Just m2 = Just (m1 `mappend` m2)
 -- Note: There is no Monoid instance for Either because the instance wouldn't be unique:
 -- We would have to choose whether to mappend over the Left or Right constructors.
+-- A similar problem occurs when we want to define a Monoid structure on Num, i.e. the Integers:
+-- Should we use addition or multiplication??  We can explicitly pass a dictionary to do both.
+data MyMonoid a = MyMon {_mempty :: a, _mappend :: a -> a -> a}
+addmon  :: MyMonoid Integer
+addmon  = MyMon {_mempty = 0, _mappend = (+)}
+multmon :: MyMonoid Integer
+multmon = MyMon {_mempty = 1, _mappend = (*)}
+applyMyMon :: Foldable t => MyMonoid a -> t a -> a
+applyMyMon mon xs = foldr (_mappend mon) (_mempty mon) xs
+thesum  = applyMyMon addmon  [1..10] --55
+theprod = applyMyMon multmon [1..10] --3628800
+
 instance Monoid b => Monoid (a -> b) where
   mempty _ = mempty
   mappend f g x = f x `mappend` g x
