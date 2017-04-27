@@ -26,7 +26,7 @@ executable haskelltalk-exe
                        Chart.Chart1, Chart.Chart2, Chart.Chart3, Chart.Chart4,
                        Plot.Plot1, Plot.Plot2, Plot.Plot3, Plot.Plot4,
                        --Use diagrams script in app/Diagrams
-                       --Diagrams.Mandelbrot, Diagrams.Pentaflake, Diagrams.Quasifuchsian, Diagrams.SquareLimit,
+                       Diagrams.Mandelbrot, Diagrams.Pentaflake, Diagrams.Quasifuchsian, Diagrams.Squarelimit,
                        GnuPlot,
                        Dimensional, Units1, Units2,
                        AD,

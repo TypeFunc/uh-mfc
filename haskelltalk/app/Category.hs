@@ -114,10 +114,13 @@ instance  Monad Maybe  where
 instance Monad (Either e) where
     Left  l >>= _ = Left l
     Right r >>= k = k r
+    return = pure
 instance Monad ((->) r) where
     f >>= k = \ r -> k (f r) r
+    return = pure
 instance Monoid a => Monad ((,) a) where
     (u, a) >>= k = case k a of (v, b) -> (u `mappend` v, b)
+    return = pure
 {- Note 1: In the above formulation of monads, the monoidal structure is hard to see because
 the type signature of bind is not symmetric with respect to the first two arguments.
 However, if we use so-called Kleisli composition,

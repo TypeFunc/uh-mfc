@@ -1,6 +1,6 @@
 # remove temporary files
 cd Diagrams
-rm Mandelbrot Pentaflake Quasifuchsian SquareLimit
+rm Mandelbrot Pentaflake Quasifuchsian Squarelimit
 cd ..
 rm *~
 rm *.log

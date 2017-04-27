@@ -3,10 +3,10 @@
 # and all other lines will be ignored.  This is useful for embedding haskell code in
 # an otherwise textual document i.e. a blog, etc.
 
-stack ghc Mandelbrot.lhs
-stack ghc Pentaflake.lhs
-stack ghc Quasifuchsian.lhs
-stack ghc SquareLimit.lhs
+stack ghc -- -main-is Diagrams.Mandelbrot    Mandelbrot.lhs    -O2
+stack ghc -- -main-is Diagrams.Pentaflake    Pentaflake.lhs    -O2
+stack ghc -- -main-is Diagrams.Quasifuchsian Quasifuchsian.lhs -O2
+stack ghc -- -main-is Diagrams.Squarelimit   Squarelimit.lhs   -O2
 
 echo "This may take a few minutes."
 echo "Mandelbrot"
@@ -15,6 +15,6 @@ echo "Pentaflake"
 time ./Pentaflake -w 1024 -h 1024 -o Pentaflake.svg
 echo "Quasifuchsian"
 time ./Quasifuchsian -w 1024 -h 1024 -o Quasifuchsian.svg
-echo "SquareLimit"
-time ./SquareLimit -w 1024 -h 1024 -o SquareLimit.svg
+echo "Squarelimit"
+time ./Squarelimit -w 1024 -h 1024 -o Squarelimit.svg
 echo "finished"
