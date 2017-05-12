@@ -1,6 +1,8 @@
 > {-# LANGUAGE NoMonomorphismRestriction #-}
 > {-# LANGUAGE TypeFamilies #-}
 > {-# LANGUAGE FlexibleContexts #-}
+
+> module Diagrams.Mandelbrot where
 >
 > -- Addapted from: "The MathematicalOrchid, 24 Feb 2007"
 > --  http://warp.povusers.org/MandScripts/haskell.html

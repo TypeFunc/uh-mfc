@@ -1,4 +1,4 @@
-module Plot.Plot4
+module Plot.Plot4 where
 
 import Graphics.Rendering.Plot
 import Numeric.LinearAlgebra

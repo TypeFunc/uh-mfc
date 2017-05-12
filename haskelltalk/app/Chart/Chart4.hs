@@ -1,3 +1,5 @@
+module Chart.Chart4 where
+
 import Graphics.Rendering.Chart.Easy
 import Graphics.Rendering.Chart.Backend.Cairo
 

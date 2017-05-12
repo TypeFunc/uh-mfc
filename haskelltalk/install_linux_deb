@@ -50,7 +50,7 @@ echo "Installing fftw" # Needed for supercollider plugins and accelerate
 sudo apt-get --yes install libfftw3-dev
 
 echo "Installing cmake" # Needed for installing from source (llvm requires version 3)
-sudo yum --assumeyes install cmake
+sudo apt-get --yes install cmake
 
 sudo apt-get --yes install libudev-dev libsndfile1-dev libx11-dev libxt-dev
 # Note: There is also libjack-dev and libjack-0 but they only contain one backend

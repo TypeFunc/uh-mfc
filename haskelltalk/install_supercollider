@@ -5,7 +5,7 @@ cd SuperCollider-Source
 mkdir build
 cd build
 cmake$1 -DCMAKE_PREFIX_PATH=~/Qt ..
-make -j2
+make -j4
 sudo make install
 sudo ldconfig
 cd ../..
@@ -16,7 +16,7 @@ cd sc3-plugins
 mkdir build
 cd build
 cmake$1 -DSC_PATH=../../SuperCollider-Source ..
-make -j2
+make -j4
 sudo make install
 cd ../..
 

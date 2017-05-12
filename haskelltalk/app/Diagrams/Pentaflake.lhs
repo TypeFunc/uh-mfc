@@ -2,6 +2,8 @@
 > {-# LANGUAGE TypeFamilies #-}
 > {-# LANGUAGE FlexibleContexts #-}
 
+> module Diagrams.Pentaflake where
+
 > import Diagrams.Prelude
 > import Diagrams.Backend.SVG.CmdLine
 

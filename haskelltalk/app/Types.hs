@@ -1,6 +1,6 @@
 module Types where
 
-import Prelude hiding (Maybe, Either)
+import Prelude hiding (Maybe (..), Either(..))
 
 {-  In C/C++/Java, etc. an Integer is just a certain pattern of bits in memory.  In Haskell, types are more algebraic. Think of types as "assertions as to the potential values of a given term" not "storage classification systems".  data declarations are used to create new 'types'.  "Rectangle" is the name of the new type, whereas "Rect" is the name of the type constructor. Sometimes the same name is used for both, but they are distinct! -}
 data Rectangle a = Rect a a --length & width. "a" is a numeric type parameter (Float, Double, etc).
@@ -17,6 +17,7 @@ area' (Rect x y) = Area (x*y) -- Notice we return Area (x*y) instead of just x*y
 cost :: Num a => Area a -> a -> a
 cost (Area x) cost_per_unit_area = x*cost_per_unit_area
 
+-- no type signature; see below
 cost1 = cost (area' (Rect 3 4)) 2
 --cost2 = cost (area (Rect 3 4)) 2 --compile error! :)
 
@@ -29,10 +30,41 @@ The vertical bar | is used to form the sum (basically disjoint union) of two typ
 data  Either a b  =  Left a | Right b
 {- Either is also used for computations which may fail.  Instead of returning Nothing,
 we can return some useful information (such as an error message). Again, the compiler
-can enforce that the caller handles both constructors. -}
----------------------------------------------------------------
+can enforce that the caller handles both constructors.-}
+showMaybe :: Show a => Maybe a -> String
+showMaybe (Just x) = show x
+showMaybe Nothing = ""
+showEither :: (Show a, Show b) => Either a b -> String
+showEither (Left x) = show x
+showEither (Right x) = show x
+{- Comment out one of the lines above to create a non-exhaustive pattern match. Now type
+:set -Wall into ghci to enable all warnings, and :set -Werror to turn warnings into
+compile errors. Reload the file to get:
 
+/home/jfennick/uh-mfc/haskelltalk/app/Types.hs:36:14: warning: [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In a case alternative: Patterns not matched: (Right _)
+
+The compiler is able to force us to check all cases!  In a language with null pointers /
+null references, you have to use an if statement and checking is not enforced.
+We can also get warnings for missing type signatures:
+
+/home/jfennick/uh-mfc/haskelltalk/app/Types.hs:21:1: warning: [-Wmissing-signatures]
+    Top-level binding with no type signature: cost1 :: Integer
+
+Another reason you should write top level type signatures is because it enables you to create
+constraints or barriers to type inference.  Writing your functions by pattern matching on
+data constructors also has the same effect. This will tend to make compile error messages nicer. -}
+
+---------------------------------------------------------------
 data Day = Monday | Tuesday | Wednesday | Thursday | Friday | Saturday | Sunday  
+{- The vertical bar is basically a disjoint union of types.-}
+nothing :: Maybe a
+nothing = Nothing
+justnothing :: Maybe (Maybe a)
+justnothing = Just $ Nothing
+justjust1 :: Maybe (Maybe Integer)
+justjust1 = Just $ Just 1
 
 type PhoneNumber = String  
 type Name = String  
@@ -95,3 +127,33 @@ liststring = makeString [1,2,3]    -- "123"
 pairstring = makeString ('x','y')  -- "'x''y'"
 areastring = makeString $ Area 51  -- "Area: 51"
 -- Type classes allow us to bundle together separate types, which is very useful.
+
+-- Type classes are implemented using "dictionary passing".  The compiler adds another parameter to
+-- your function definitions and then implicitly passes the dictionary of functions.  Note that
+-- the compiler must be able to uniquely determine which dictionary to pass, or else you will
+-- get a compile error. (We will see an example of that soon.)
+data MyTypeClassFunctions a = Funcs {_toString :: a -> String}
+makeString' :: MyTypeClassFunctions a -> a -> String -- We can explicitly pass the dictionary
+makeString' dict x = (_toString dict) x
+
+listfn :: Show a => [a] -> String
+listfn xs = concat $ map show xs
+listdict :: Show a => MyTypeClassFunctions [a]
+listdict = Funcs {_toString = listfn}
+liststring' = makeString' listdict [1,2,3]    -- "123"
+
+pairfn :: (Show a, Show b) => (a,b) -> String
+pairfn (x,y) = show x ++ show y
+pairdict :: (Show a, Show b) => MyTypeClassFunctions (a,b)
+pairdict = Funcs {_toString = pairfn}
+pairstring' = makeString' pairdict ('x','y')  -- "'x''y'"
+
+areafn :: Show a => Area a -> String
+areafn (Area x) = "Area: " ++ show x
+areadict :: Show a => MyTypeClassFunctions (Area a)
+areadict = Funcs {_toString = areafn}
+areastring' = makeString' areadict $ Area 51  -- "Area: 51"
+
+-- Type classes allow us to hide this verbosity, but more importantly they let us know exactly which
+-- function definitions are being called.  (I.e. What is makeString' actually doing, anyway???)
+-- Sometimes this extra power is useful, as we will see in the Monoid example.

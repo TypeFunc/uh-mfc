@@ -26,7 +26,7 @@ executable haskelltalk-exe
                        Chart.Chart1, Chart.Chart2, Chart.Chart3, Chart.Chart4,
                        Plot.Plot1, Plot.Plot2, Plot.Plot3, Plot.Plot4,
                        --Use diagrams script in app/Diagrams
-                       --Diagrams.Mandelbrot, Diagrams.Pentaflake, Diagrams.Quasifuchsian, Diagrams.SquareLimit,
+                       Diagrams.Mandelbrot, Diagrams.Pentaflake, Diagrams.Quasifuchsian, Diagrams.Squarelimit,
                        GnuPlot,
                        Dimensional, Units1, Units2,
                        AD,
@@ -34,7 +34,8 @@ executable haskelltalk-exe
                        HaTeX,
                        Satisfiability,
                        SizeIndexedVectors,
-                       NumberTheory
+                       NumberTheory,
+                       Accelerate
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   build-depends:       base
 -- Note: if you want to install Agda and/or Idris, I recommend doing a 'stack build' first,
@@ -68,6 +69,7 @@ executable haskelltalk-exe
                      -- The next two lines are needed for Matplotlib
                      --, random, raw-strings-qq, temporary, bytestring, process, split
                      --, tasty, tasty-expected-failure, tasty-hunit, tasty-golden
+                     , QuickCheck, hedgehog
                      , stm
                      --, morte
                      --, recursion-schemes
@@ -81,6 +83,8 @@ executable haskelltalk-exe
                      --, unordered-containers
                      --, vectors
                      , accelerate, accelerate-examples
+                     , accelerate-llvm-native
+                     --, accelerate-llvm-ptx
                      , sbv, picosat, picologic
                      , arithmoi
                      --, repa
