@@ -44,7 +44,7 @@ answers  = solveProp proposition  >>= putStrLn . ppSolutions
 answers' = solveProp proposition' >>= putStrLn . ppSolutions
 
 {- Question: Is it possible to assign different digits to the following letters
-such that the equation burito + monad = bandaid is satisfied? -}
+such that the equation burrito + monad = bandaid is satisfied? -}
 puzzle :: Symbolic SBool
 puzzle = do
   ds@[b,u,r,i,t,o,m,n,a,d] <- sequenceA [ sInteger [v] | v <- "buritomnad" ]

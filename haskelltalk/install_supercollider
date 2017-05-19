@@ -32,6 +32,9 @@ wget -nc https://raw.github.com/yaxu/Tidal/master/tidal.el
 # include("SuperDirt")
 # Now go the Language menu and click Recompile Class Library before entering the next command.
 # SuperDirt.start
+# If everything works, you should see
+# loading 202 sample banks: ...
+# SuperDirt: listening to Tidal on port 57120
 
 # If you're using atom, after you install the tidalycles plugin (and all its dependencies), 
 # go to its settings and change the ghci path to

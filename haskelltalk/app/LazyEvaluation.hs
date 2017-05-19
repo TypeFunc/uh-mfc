@@ -101,7 +101,7 @@ noleaky = do
 listoflists = [[0..9],[10..19],[20..29]]
 lazyaccumulator = foldl (++) [] listoflists
 
-strictconcat !x y = x ++ y -- The ! is called a "bang patten" and forces evaluation
+strictconcat !x y = x ++ y -- The ! is called a "bang pattern" and forces evaluation
 strictaccumulator = foldl strictconcat [] listoflists
 
 -- Lazy evaluation allows us to use the technique of dynamic programming to solve the knapsack problem.

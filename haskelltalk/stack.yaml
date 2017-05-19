@@ -16,16 +16,16 @@
 #  name: custom-snapshot
 #  location: "./custom-snapshot.yaml"
 
-#compiler: ghc-8.2.0.20170404
+#compiler: ghc-8.2.0.20170507
 compiler-check: match-exact
-resolver: lts-8.11
+resolver: lts-8.14
 setup-info:
   ghc:
-    linux64:
-      8.2.0.20170404:
-        url: https://downloads.haskell.org/~ghc/8.2.1-rc1/ghc-8.2.0.20170404-x86_64-deb8-linux.tar.xz
-        content-length: 138846620
-        sha1: 3fd303b5753b095ce020131405dcf43199e6b447
+    linux64-nopie:
+      8.2.0.20170507:
+        url: https://downloads.haskell.org/~ghc/8.2.1-rc2/ghc-8.2.0.20170507-x86_64-deb8-linux.tar.xz
+        content-length: 141011788
+        sha1: ff886437c1d2ddfa5686d6c9efb0819a957c3dde
 
 # User packages to be built.
 # Various formats can be used as shown in the example below.

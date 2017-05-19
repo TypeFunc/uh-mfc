@@ -1,7 +1,12 @@
-echo "This script may take a long time. ~(2 hrs...)"
+echo "This script will install the system level packages needed for the haskell libraries used in this talk. This script must be run from your home directory (or else you must modify some paths in this script and elsewhere). Before running this script, if you would like to install nvidia cuda then uncomment the appropriate lines below. After running this script, copy (or append) uh-mfc/haskelltalk/dotemacs to ~/.emacs  This script is mostly automated, but you may be asked for your sudo password occasionally. (There is also a graphical Qt5 installer which is not automated.) Finally, note that this script may take a long time. ~(2 hrs...)"
 
-##Need to create symlink on red hat linux 7.3 to workaround a bug when installing haskelline
-#sudo ln -s /usr/lib64/libtinfo.so.5 /usr/lib64/libtinfo.so
+read -p 'Abort this setup script? [Y/n]' -n 1 -r
+if [[ $REPLY =~ ^[Yy]$ ]] 
+then
+    echo 'Setup aborted.'
+    exit
+fi
+
 sudo yum --assumeyes install ncurses-devel
 
 echo "Installing git version control"
@@ -22,8 +27,6 @@ echo "Installing GHC, the Glorious Haskell Compiler"
 stack setup
 echo "Installing cabal build tool"
 stack install cabal-install
-#stack exec -- cabal install world
-#mv .cabalconfig ~/.cabal/config
 echo "Installing intero development tool"
 stack install intero
 #echo "Installing hoogle documentation"
@@ -34,19 +37,14 @@ stack install intero
 
 echo "Installing emacs text editor"
 sudo yum --assumeyes  install emacs
-echo "moving ~/.emacs to ~/.emacsbackup"
-mv ~/.emacs ~/.emacsbackup
-echo "copying dotemacs to ~/.emacs"                                                     
-cp dotemacs ~/.emacs
 
 echo "Downloading atom text editor"
-wget -nc https://atom.io/download/rpm
-mv rpm atom-amd64.rpm
+wget -O atom-amd64.deb -nc https://atom.io/download/deb
 echo "Installing atom text editor"
 sudo rpm --install atom-amd64.rpm
 
 #Some of the haskell libraries require native dependencies which stack does not install,
-#so we need to use the system package manager.  This works on ubuntu linux, but if you are
+#so we need to use the system package manager.  This works on linux, but if you are
 #on windows or OSX you will need to install some other way.
 
 # Qt5 is needed for Supercollider
@@ -87,8 +85,8 @@ cd ../..
 echo "Installing LaTeX for HaTeX"
 sudo yum --assumeyes install texlive
 
-#echo "Installing python3 for Matplotlib"
-#sudo yum --assumeyes install -y python3-pip python3-matplotlib python3-numpy python-mpltoolkits.basemap
+echo "Installing python3 for Matplotlib"
+sudo yum --assumeyes install -y python3-pip python3-matplotlib python3-numpy python-mpltoolkits.basemap
 
 echo "Installing gnuplot"
 sudo yum --assumeyes install gnuplot
@@ -115,6 +113,7 @@ echo "Installing GL, GLU, GLUT, and fftw for accelerate"
 sudo yum --assumeyes install mesa-libGL-devel mesa-libGLU-devel freeglut-devel
 
 echo "Installing llvm 4.0 from source"
+cd ~
 wget -nc http://releases.llvm.org/4.0.0/llvm-4.0.0.src.tar.xz
 tar -xf llvm-4.0.0.src.tar.xz
 sudo mkdir /tmp/build
@@ -130,12 +129,13 @@ cd ~/uh-mfc/haskelltalk
 echo "Installing ffi"
 sudo yum --assumeyes install libffi-devel
 
-# The accelerate-cuda backend is currently broken and deprecated
+# The haskell package accelerate-cuda does not build on ghc 8.02 and is deprecated.
+# Instead, use the haskell package accelerate-llvm-ptx (which uses cuda), so install cuda if you want to use your (Nvidia) GPU.
 #echo "Installing nvidia cuda"
 #sudo yum --assumeyes install linux-headers-$(uname -r)
-#wget -nc http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_8.0.61-1_amd64.deb
-#sudo dpkg -i cuda-repo-ubuntu1604_8.0.61-1_amd64.deb
-#sudo yum update
+# wget -nc http://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-repo-rhel7-8.0.61-1.x86_64.rpm
+#sudo rpm -i cuda-repo-rhel7-8.0.61-1.x86_64.rpm
+#sudo yum clean all
 #sudo yum --assumeyes install cuda
 
 echo "Building. The first time you do a full build may take a long time ~(2 hrs...)"

@@ -1,7 +1,12 @@
-echo "This script may take a long time. ~(2 hrs...)"
+echo "This script will install the system level packages needed for the haskell libraries used in this talk. This script must be run from your home directory (or else you must modify some paths in this script and elsewhere). Before running this script, if you would like to install nvidia cuda then uncomment the appropriate lines below. After running this script, copy (or append) uh-mfc/haskelltalk/dotemacs to ~/.emacs  This script is mostly automated, but you may be asked for your sudo password occasionally. Finally, note that this script may take a long time. ~(2 hrs...)"
 
-##Need to create symlink on ubuntu 16.04 and 16.10 to workaround a bug when installing haskelline
-#sudo ln -s /lib/x86_64-linux-gnu/libtinfo.so.5 /lib/x86_64-linux-gnu/libtinfo.so
+read -p 'Abort this setup script? [Y/n]' -n 1 -r
+if [[ $REPLY =~ ^[Yy]$ ]] 
+then
+    echo 'Setup aborted.'
+    exit
+fi
+
 sudo apt-get --yes install libtinfo-dev
 
 echo "Installing git version control"
@@ -19,8 +24,6 @@ echo "Installing GHC, the Glorious Haskell Compiler"
 stack setup
 echo "Installing cabal build tool"
 stack install cabal-install
-#stack exec -- cabal install world
-#mv .cabalconfig ~/.cabal/config
 echo "Installing intero development tool"
 stack install intero
 #echo "Installing hoogle documentation"
@@ -31,19 +34,15 @@ stack install intero
 
 echo "Installing emacs text editor"
 sudo apt-get --yes  install emacs
-echo "moving ~/.emacs to ~/.emacsbackup"
-mv ~/.emacs ~/.emacsbackup
-echo "copying dotemacs to ~/.emacs"                                                     
-cp dotemacs ~/.emacs
 
 echo "Downloading atom text editor"
-wget -nc https://atom.io/download/deb
-mv deb atom-amd64.deb
+wget -O atom-amd64.deb -nc https://atom.io/download/deb
 echo "Installing atom text editor"
+sudo apt-get --yes install gconf2 # On debian 9, need to install gconf2 dependency first
 sudo dpkg --install atom-amd64.deb
 
 #Some of the haskell libraries require native dependencies which stack does not install,
-#so we need to use the system package manager.  This works on ubuntu linux, but if you are
+#so we need to use the system package manager.  This works on linux, but if you are
 #on windows or OSX you will need to install some other way.
 
 echo "Installing fftw" # Needed for supercollider plugins and accelerate
@@ -66,8 +65,8 @@ sudo apt-get --yes install csound #csound-gui
 echo "Installing LaTeX for HaTeX"
 sudo apt-get --yes install texlive
 
-#echo "Installing python3 for Matplotlib"
-#sudo apt-get --yes install -y python3-pip python3-matplotlib python3-numpy python-mpltoolkits.basemap
+echo "Installing python3 for Matplotlib"
+sudo apt-get --yes install -y python3-pip python3-matplotlib python3-numpy python-mpltoolkits.basemap
 
 echo "Installing gnuplot"
 sudo apt-get --yes install gnuplot
@@ -92,19 +91,32 @@ sudo apt-get --yes install libgtk2.0-dev libgtk-3-dev
 # The following pairs of lines are needed for the accelerate library
 echo "Installing GL, GLU, GLUT, and llvm-4.0 for accelerate"
 sudo apt-get --yes install libgl1-mesa-dev libglu1-mesa-dev freeglut3
-sudo add-apt-repository ppa:ubuntu-x-swat/updates -y
-sudo apt-get update
-sudo apt-get --yes install llvm-4.0-dev libffi-dev
-# Must remove llvm 3.8 or else it will try to link to both 3.8 and 4.0 at runtime and segfault
-sudo apt-get --yes remove libllvm3.8
 
-# The accelerate-cuda backend is currently broken and deprecated
+# Uncomment your distro/version to add the llvm 4.0 repository to your list of sources
+# debian 8 jessie / debian 9 stretch
+#echo "deb http://apt.llvm.org/jessie/ llvm-toolchain-jessie-4.0 main" > llvm4.0.list
+#echo "deb-src http://apt.llvm.org/jessie/ llvm-toolchain-jessie-4.0 main" >> llvm4.0.list
+# ubuntu 16.04 xenial
+#echo "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-4.0 main" > llvm4.0.list
+#echo "deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial-4.0 main" >> llvm4.0.list
+# ubuntu 16.10 yakkety
+#echo "deb http://apt.llvm.org/yakkety/ llvm-toolchain-yakkety-4.0 main" > llvm4.0.list
+#echo "deb-src http://apt.llvm.org/yakkety/ llvm-toolchain-yakkety-4.0 main" >> llvm4.0.list
+# ubuntu 17.04 zesty
+#echo "deb http://apt.llvm.org/zesty/ llvm-toolchain-zesty-4.0 main" > llvm4.0.list
+#echo "deb-src http://apt.llvm.org/zesty/ llvm-toolchain-zesty-4.0 main" >> llvm4.0.list
+sudo mv llvm4.0.list /etc/apt/sources.list.d/
+wget -O - http://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add
+sudo apt-get update
+
+sudo apt-get --yes install llvm-4.0-dev libffi-dev
+# Must remove llvm 3.8 & 3.9 or else it will try to link to both 3.8/3.9 and 4.0 at runtime and segfault
+sudo apt-get --yes remove libllvm3.8 libllvm3.9
+
+# The haskell package accelerate-cuda does not build on ghc 8.02 and is deprecated.
+# Instead, use the haskell package accelerate-llvm-ptx (which uses cuda), so install cuda if you want to use your (Nvidia) GPU.
 #echo "Installing nvidia cuda"
-#sudo apt-get --yes install linux-headers-$(uname -r)
-#wget -nc http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_8.0.61-1_amd64.deb
-#sudo dpkg -i cuda-repo-ubuntu1604_8.0.61-1_amd64.deb
-#sudo apt-get update
-#sudo apt-get --yes install cuda
+#apt-get install nvidia-cuda-toolkit
 
 echo "Installing the z3 and picosat theorem provers"
 sudo apt-get --yes install z3 picosat

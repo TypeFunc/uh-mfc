@@ -123,5 +123,7 @@ source code you are testing (with line numbers) and with the inputs substituted 
 
     This failure can be reproduced by running:
     > recheck (Size 90) (Seed 1547696838921356081 8222902885915333511) <property>
-False
+False-
 -}
+-- The output is color coded when run in a terminal
+main = sequence [check_check_1, check_check_2, check_check_3]

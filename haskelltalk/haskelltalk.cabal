@@ -35,7 +35,8 @@ executable haskelltalk-exe
                        Satisfiability,
                        SizeIndexedVectors,
                        NumberTheory,
-                       Accelerate
+                       Accelerate,
+                       MatPlotLib
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   build-depends:       base
 -- Note: if you want to install Agda and/or Idris, I recommend doing a 'stack build' first,
@@ -65,10 +66,10 @@ executable haskelltalk-exe
                      --, H , inline-r
                      --, intervals
                      --, kan-extensions
-                     --, matplotlib
+                     , matplotlib
                      -- The next two lines are needed for Matplotlib
-                     --, random, raw-strings-qq, temporary, bytestring, process, split
-                     --, tasty, tasty-expected-failure, tasty-hunit, tasty-golden
+                     , random, raw-strings-qq, temporary, bytestring, process, split
+                     , tasty, tasty-expected-failure, tasty-hunit, tasty-golden
                      , QuickCheck, hedgehog
                      , stm
                      --, morte
